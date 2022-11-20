@@ -109,7 +109,7 @@ const client2 = new tmi.Client({
     username: process.env.TWITCH_BOT_USERNAME,
     password: process.env.TWITCH_ACCESS_TOKEN,
   },
-  channels: ['chaoticmuchbot'],
+  channels: ['chaoticmuch'],
 })
 
 client.connect()
@@ -117,7 +117,7 @@ client2.connect()
 
 console.log('Listening for messages..')
 
-let nowResponse = 'there are currently no events happening.'
+let nowResponse = 'ALGS scores not yet available. Stay tuned :)'
 client.on('message', (channel, tags, message, self) => {
   if (tags['display-name'] == 'OversightEsports') {
     console.log(`${tags['display-name']}: ${message}`)
