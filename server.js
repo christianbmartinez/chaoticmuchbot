@@ -36,6 +36,7 @@ async function getLatestTweet() {
   }
 })()
 
+
 let apexStats = 'Failed to fetch current apex stats'
 
 async function getApexStats() {
@@ -43,7 +44,15 @@ async function getApexStats() {
     const response = await axios.get(
       `https://api.mozambiquehe.re/bridge?auth=${process.env.APEX_STATS_AUTH}&uid=1006162359940&platform=PC`
     )
-    apexStats = `Rank: ${response.data.global.rank.rankName}, RP: ${response.data.global.rank.rankScore}, Position:#${response.data.global.rank.ladderPosPlatform}, Legend: ${response.data.legends.selected.LegendName}, Legend Kills: ${response.data.legends.selected.data[0].value}, Skin: ${response.data.legends.selected.gameInfo.skin}, Pose: ${response.data.legends.selected.gameInfo.pose}, Frame: ${response.data.legends.selected.gameInfo.frame}`
+    apexStats = `
+    Rank: ${response.data.global.rank.rankName}, 
+    RP: ${response.data.global.rank.rankScore}, 
+    Position:# ${response.data.global.rank.ladderPosPlatform}, 
+    Legend: ${response.data.legends.selected.LegendName}, 
+    Legend Kills: ${response.data.legends.selected.data[0].value}, 
+    Skin: ${response.data.legends.selected.gameInfo.skin}, 
+    Pose: ${response.data.legends.selected.gameInfo.pose}, 
+    Frame: ${response.data.legends.selected.gameInfo.frame}`
     console.log('Got apex data')
   } catch (error) {
     console.error(error)
@@ -119,8 +128,7 @@ client.on('message', (channel, tags, message, self) => {
 let arr = [
   '@chaoticmuchbot do you like me',
   '@chaoticmuchbot do you love me',
-  '@chaoticmuchbot do you hate me',
-  '@chaoticmuchbot can you help me',
+  '@chaoticmuchbot do you hate me'
 ]
 
 function isMathProblem(str) {
