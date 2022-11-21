@@ -147,9 +147,8 @@ const giveawayIsActive = false
 let isWinner
 
 client2.on('message', (channel, tags, message, self) => {
-  const streamElements = tags['display-name'] == 'StreamElements'
   if (self) return
-  if (message.includes('!now') && !streamElements) {
+  if (message.includes('!now') && tags['display-name'] !== 'StreamElements') {
     client2.say(channel, `@${tags.username}, ${nowResponse}`)
   }
   if (message.includes('!livestats')) {
