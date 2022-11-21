@@ -112,7 +112,7 @@ const client2 = new tmi.Client({
   channels: ['chaoticmuch'],
 })
 
-client.connect()
+//client.connect()
 client2.connect()
 
 console.log('Listening for messages..')
