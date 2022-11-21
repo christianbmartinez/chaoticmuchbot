@@ -117,7 +117,7 @@ client2.connect()
 
 console.log('Listening for messages..')
 
-let nowResponse = 'ALGS scores not yet available. Stay tuned :)'
+let nowResponse = 'there are currently no events happening.'
 client.on('message', (channel, tags, message, self) => {
   if (tags['display-name'] == 'OversightEsports') {
     console.log(`${tags['display-name']}: ${message}`)
@@ -172,6 +172,7 @@ client2.on('message', (channel, tags, message, self) => {
   if (message.includes('^')) {
     client2.say(channel, '^^^')
   }
+
   if (message.includes(arr.find((element) => element === message))) {
     client2.say(channel, `@${tags.username}, Not really Kappa`)
   }
