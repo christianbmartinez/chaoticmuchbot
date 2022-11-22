@@ -113,12 +113,13 @@ const client2 = new tmi.Client({
   channels: ['chaoticmuch'],
 })
 
-//client.connect()
+client.connect()
 client2.connect()
 
 console.log('Listening for messages..')
 
-let nowResponse = 'there are currently no events happening.'
+let nowResponse
+
 client.on('message', (channel, tags, message, self) => {
   if (tags['display-name'] == 'OversightEsports') {
     console.log(`${tags['display-name']}: ${message}`)
@@ -144,13 +145,24 @@ function performMath(str) {
 
 const entries = {}
 const giveawayIsActive = false
+let tourneyIsActive = false
 
 let isWinner
 
 client2.on('message', (channel, tags, message, self) => {
   if (self) return
-  if (message.includes('!now') && tags['display-name'] !== 'StreamElements') {
+  if (message.includes('!now') && message !== '!now off' && tags['display-name'] !== 'StreamElements' && tourneyIsActive) {
     client2.say(channel, `@${tags.username}, ${nowResponse}`)
+  } 
+  if (message === '!now on' && tags.mod && !tourneyIsActive) {
+    nowResponse = 'waiting for event data...'
+    client2.say(channel, `@${tags.username}, turned on data for !now... fetching... :)`)
+    tourneyIsActive = true
+  } 
+  if (message === '!now off' && tags.mod && tourneyIsActive) {
+    nowResponse = 'there are currently no events happening.'
+    client2.say(channel, `@${tags.username}, turned off data for !now`)
+    tourneyIsActive = false
   }
   if (message.includes('!livestats')) {
     client2.say(channel, `@${tags.username}, ${apexStats}`)
@@ -159,7 +171,7 @@ client2.on('message', (channel, tags, message, self) => {
   if (message.includes('!weather')) {
     client2.say(
       channel,
-      `@${tags.username}, it is currently ${degrees} degrees (${celcius} celcius) in Los Angeles for chaotic.`
+      `@${tags.username}, it is currently ${degrees} degrees (${celcius} celcius) in Los Angeles for chaotic`
     )
     getDegrees()
     getCelcius()
@@ -181,7 +193,7 @@ client2.on('message', (channel, tags, message, self) => {
     performMath(message)
     client2.say(channel, `@${tags.username}, The answer is ${math}`)
   }
-  if (giveawayIsActive === true) {
+  if (giveawayIsActive) {
     if (
       message.includes('!enter') &&
       entries[tags.username] !== tags.username
