@@ -168,6 +168,10 @@ client2.on('message', (channel, tags, message, self) => {
     client2.say(channel, `@${tags.username}, ${apexStats}`)
     getApexStats()
   }
+  if (message.includes('!gamble')) {
+    client2.say(channel, `@${tags.username}, the quickest way to earn R301 Beamerz is to bet against chaotic in predictions Kappa`)
+    getApexStats()
+  }
   if (message.includes('!weather')) {
     client2.say(
       channel,
