@@ -110,7 +110,7 @@ const client2 = new tmi.Client({
     username: process.env.TWITCH_BOT_USERNAME,
     password: process.env.TWITCH_ACCESS_TOKEN,
   },
-  channels: ['chaoticmuch'],
+  channels: ['chaoticmuchbot'],
 })
 
 client.connect()
@@ -127,12 +127,6 @@ client.on('message', (channel, tags, message, self) => {
   }
 })
 
-let arr = [
-  '@chaoticmuchbot do you like me',
-  '@chaoticmuchbot do you love me',
-  '@chaoticmuchbot do you hate me'
-]
-
 function isMathProblem(str) {
   return /^(\d*\.?\d*)\s?[-+/*]\s?(\d*\.?\d*)$/g.test(str)
 }
@@ -143,14 +137,55 @@ function performMath(str) {
   math = evaluate(str)
 }
 
-const entries = {}
-const giveawayIsActive = false
+let entries = {}
+let giveawayIsActive = false
 let tourneyIsActive = false
-
 let isWinner
 
 client2.on('message', (channel, tags, message, self) => {
   if (self) return
+    if (message.includes('!enter') && entries[tags.username] !== tags.username && giveawayIsActive && !isWinner) {
+      entries[tags.username] = tags.username
+      client.say(
+        channel,
+        `You have been entered into the giveaway, @${tags.username}`
+      )
+    } else if (message.includes('!enter') && entries[tags.username] === tags.username && giveawayIsActive && !isWinner) {
+      client.say(
+        channel,
+        `You have already been entered into the giveaway, @${tags.username}`
+      )
+    } else if (message.includes('!enter') && isWinner && giveawayIsActive) {
+      client.say(
+        channel,
+        `@${tags.username}, the giveaway has passed :( @${isWinner} has already been chosen as our giveaway winner!`)
+    }
+    if (message === '!giveaway on' && tags.mod && !giveawayIsActive) {
+      client2.say(channel, `@${tags.username}, giveaway feature enabled. Use !enter to enter the giveaway :)`)
+      giveawayIsActive = true
+    } 
+    if (message === '!giveaway off' && tags.mod && giveawayIsActive) {
+      client2.say(channel, `@${tags.username}, giveaway feature disabled.`)
+      giveawayIsActive = false
+      isWinner = false
+      entries = {}
+    }
+    if (message === '!choosewinner' && tags.mod === true && !isWinner && giveawayIsActive) {
+      const entriesArr = Object.values(entries)
+      const randomNum = Math.floor(Math.random() * entriesArr.length)
+      const winner = entriesArr[randomNum]
+      isWinner = winner
+      client.say(
+        channel,
+        `We have a winner! @${winner}, congratulations! Hope you're ready to claim your prize :)`
+      )
+    } else if (message === '!choosewinner' && tags.mod === true && isWinner && giveawayIsActive) {
+      client.say(
+        channel,
+        `@${isWinner} has already been chosen as our giveaway winner! We appreciate everyone joining the giveaway! :)`
+      )
+    }
+
   if (message.includes('!now') && message !== '!now off' && tags['display-name'] !== 'StreamElements' && tourneyIsActive) {
     client2.say(channel, `@${tags.username}, ${nowResponse}`)
   } 
@@ -168,9 +203,11 @@ client2.on('message', (channel, tags, message, self) => {
     client2.say(channel, `@${tags.username}, ${apexStats}`)
     getApexStats()
   }
+  if (message.includes('@chaoticmuchbot')) {
+    client2.say(channel, `@${tags.username}, go f*** yourself :)`)
+  }
   if (message.includes('!gamble')) {
     client2.say(channel, `@${tags.username}, the quickest way to earn R301 Beamerz is to bet against chaotic in predictions Kappa`)
-    getApexStats()
   }
   if (message.includes('!weather')) {
     client2.say(
@@ -190,48 +227,11 @@ client2.on('message', (channel, tags, message, self) => {
     client2.say(channel, '^^^')
   }
 
-  if (message.includes(arr.find((element) => element === message))) {
-    client2.say(channel, `@${tags.username}, Not really Kappa`)
-  }
   if (isMathProblem(message)) {
     performMath(message)
     client2.say(channel, `@${tags.username}, The answer is ${math}`)
   }
-  if (giveawayIsActive) {
-    if (
-      message.includes('!enter') &&
-      entries[tags.username] !== tags.username
-    ) {
-      entries[tags.username] = tags.username
-      client.say(
-        channel,
-        `You have been entered into the giveaway, @${tags.username}`
-      )
-    } else if (
-      message.includes('!enter') &&
-      entries[tags.username] === tags.username
-    ) {
-      client.say(
-        channel,
-        `You have already been entered into the giveaway, @${tags.username}`
-      )
-    }
-    if (message === '!choosewinner' && tags.mod === true && !isWinner) {
-      const entriesArr = Object.values(entries)
-      const randomNum = Math.floor(Math.random() * entriesArr.length)
-      const winner = entriesArr[randomNum]
-      isWinner = winner
-      client.say(
-        channel,
-        `We have a winner! @${winner}, congratulations! Hope you're ready to claim your prize :)`
-      )
-    } else if (message === '!choosewinner' && tags.mod === true && isWinner) {
-      client.say(
-        channel,
-        `@${isWinner} has already been chosen as our giveaway winner! We appreciate everyone joining the giveaway! :)`
-      )
-    }
-  }
+
   if (message.includes('!latesttweet')) {
     client.say(
       channel,
