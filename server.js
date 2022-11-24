@@ -214,7 +214,7 @@ client2.on('message', (channel, tags, message, self) => {
   if (message.includes('!help')) {
     client2.say(
       channel,
-      `@${tags.username}, streamelements commands: https://streamelements.com/chaoticmuch-7861/commands chaoticmuchbot commands: !now !livestats !weather !latesttweet`
+      `@${tags.username}, streamelements commands: https://streamelements.com/chaoticmuch-7861/commands chaoticmuchbot commands: !now !livestats !weather !latesttweet !joke`
     )
   } 
 
