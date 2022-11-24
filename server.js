@@ -4,12 +4,12 @@ const axios = require('axios')
 const needle = require('needle')
 const {evaluate} = require('decimal-eval')
 
-const twittertoken = process.env.TWITTER_BEARER_TOKEN
-const endpointUrl = 'https://api.twitter.com/2/tweets/search/recent'
 let tweet
 let tweetId
 
 async function getLatestTweet() {
+  const twittertoken = process.env.TWITTER_BEARER_TOKEN
+  const endpointUrl = 'https://api.twitter.com/2/tweets/search/recent'
   const params = {
     query: 'from:g2chaotic -is:retweet',
     'tweet.fields': 'author_id',
@@ -28,15 +28,7 @@ async function getLatestTweet() {
     throw new Error('Unsuccessful request')
   }
 }
-
-(async () => {
-  try {
-    const resp = await getLatestTweet()
-  } catch (e) {
-    console.log(e)
-  }
-})()
-
+getLatestTweet()
 
 let apexStats = 'Failed to fetch current apex stats'
 
@@ -114,6 +106,19 @@ async function getJoke() {
 }
 getJoke()
 
+let pickupLine
+
+async function getPickupLine() {
+  try {
+    const response = await axios.get('https://getpickuplines.herokuapp.com/lines/random')
+    pickupLine = response.data.line
+    console.log('Got pickup line data')
+  } catch (error) {
+    console.error(error)
+  }
+}
+getPickupLine()
+
 const client = new tmi.Client({
   connection: {
     reconnect: true,
@@ -189,6 +194,11 @@ client2.on('message', (channel, tags, message, self) => {
     getApexStats()
   }
 
+  if (message.includes('!pickupline')) {
+    client2.say(channel, `@${tags.username}, ${pickupLine}`)
+    getPickupLine()
+  }
+
   if (message.includes('!joke')) {
     client2.say(channel, `@${tags.username}, ${joke}`)
     getJoke()
@@ -214,7 +224,7 @@ client2.on('message', (channel, tags, message, self) => {
   if (message.includes('!help')) {
     client2.say(
       channel,
-      `@${tags.username}, streamelements commands: https://streamelements.com/chaoticmuch-7861/commands chaoticmuchbot commands: !now !livestats !weather !latesttweet !joke`
+      `@${tags.username}, streamelements commands: https://streamelements.com/chaoticmuch-7861/commands chaoticmuchbot commands: !now !livestats !weather !latesttweet !joke !pickupline`
     )
   } 
 
