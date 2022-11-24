@@ -91,6 +91,29 @@ async function getCelcius() {
 }
 getCelcius()
 
+const baseURL = "https://v2.jokeapi.dev"
+const categories = ["Misc", "Pun", "Spooky", "Christmas"]
+const params = [
+  "blacklistFlags=nsfw,religious,racist,sexist"
+]
+
+let joke
+
+async function getJoke() {
+  try {
+    const response = await axios.get(baseURL + "/joke/" + categories.join(",") + "?" + params.join("&"))
+    if (response.data.setup && response.data.delivery) {     
+      joke = response.data.setup + ' ' + response.data.delivery
+    } else {
+      joke = response.data.joke
+    }
+    console.log('Got joke data')
+  } catch (error) {
+    console.error(error)
+  }
+}
+getJoke()
+
 const client = new tmi.Client({
   connection: {
     reconnect: true,
@@ -144,71 +167,41 @@ let isWinner
 
 client2.on('message', (channel, tags, message, self) => {
   if (self) return
-    if (message.includes('!enter') && entries[tags.username] !== tags.username && giveawayIsActive && !isWinner) {
-      entries[tags.username] = tags.username
-      client.say(
-        channel,
-        `You have been entered into the giveaway, @${tags.username}`
-      )
-    } else if (message.includes('!enter') && entries[tags.username] === tags.username && giveawayIsActive && !isWinner) {
-      client.say(
-        channel,
-        `You have already been entered into the giveaway, @${tags.username}`
-      )
-    } else if (message.includes('!enter') && isWinner && giveawayIsActive) {
-      client.say(
-        channel,
-        `@${tags.username}, the giveaway has passed :( @${isWinner} has already been chosen as our giveaway winner!`)
-    }
-    if (message === '!giveaway on' && tags.mod && !giveawayIsActive) {
-      client2.say(channel, `@${tags.username}, giveaway feature enabled. Use !enter to enter the giveaway :)`)
-      giveawayIsActive = true
-    } 
-    if (message === '!giveaway off' && tags.mod && giveawayIsActive) {
-      client2.say(channel, `@${tags.username}, giveaway feature disabled.`)
-      giveawayIsActive = false
-      isWinner = false
-      entries = {}
-    }
-    if (message === '!choosewinner' && tags.mod === true && !isWinner && giveawayIsActive) {
-      const entriesArr = Object.values(entries)
-      const randomNum = Math.floor(Math.random() * entriesArr.length)
-      const winner = entriesArr[randomNum]
-      isWinner = winner
-      client.say(
-        channel,
-        `We have a winner! @${winner}, congratulations! Hope you're ready to claim your prize :)`
-      )
-    } else if (message === '!choosewinner' && tags.mod === true && isWinner && giveawayIsActive) {
-      client.say(
-        channel,
-        `@${isWinner} has already been chosen as our giveaway winner! We appreciate everyone joining the giveaway! :)`
-      )
-    }
 
   if (message.includes('!now') && message !== '!now off' && tags['display-name'] !== 'StreamElements' && tourneyIsActive) {
     client2.say(channel, `@${tags.username}, ${nowResponse}`)
   } 
+
   if (message === '!now on' && tags.mod && !tourneyIsActive) {
     nowResponse = 'waiting for event data...'
     client2.say(channel, `@${tags.username}, turned on data for !now... fetching... :)`)
     tourneyIsActive = true
   } 
+
   if (message === '!now off' && tags.mod && tourneyIsActive) {
     nowResponse = 'there are currently no events happening.'
     client2.say(channel, `@${tags.username}, turned off data for !now`)
     tourneyIsActive = false
   }
+
   if (message.includes('!livestats')) {
     client2.say(channel, `@${tags.username}, ${apexStats}`)
     getApexStats()
   }
+
+  if (message.includes('!joke')) {
+    client2.say(channel, `@${tags.username}, ${joke}`)
+    getJoke()
+  }
+
   if (message.includes('@chaoticmuchbot')) {
     client2.say(channel, `@${tags.username}, go f*** yourself :)`)
   }
+
   if (message.includes('!gamble')) {
     client2.say(channel, `@${tags.username}, the quickest way to earn R301 Beamerz is to bet against chaotic in predictions Kappa`)
   }
+
   if (message.includes('!weather')) {
     client2.say(
       channel,
@@ -217,12 +210,14 @@ client2.on('message', (channel, tags, message, self) => {
     getDegrees()
     getCelcius()
   }
+
   if (message.includes('!help')) {
     client2.say(
       channel,
       `@${tags.username}, streamelements commands: https://streamelements.com/chaoticmuch-7861/commands chaoticmuchbot commands: !now !livestats !weather !latesttweet`
     )
-  }
+  } 
+
   if (message.includes('^')) {
     client2.say(channel, '^^^')
   }
@@ -238,6 +233,48 @@ client2.on('message', (channel, tags, message, self) => {
       `@${tags.username}, chaotics latest tweet was "${tweet}" https://twitter.com/G2Chaotic/status/${tweetId}`
     )
     getLatestTweet()
+  }
+
+  if (message.includes('!enter') && entries[tags.username] !== tags.username && giveawayIsActive && !isWinner) {
+    entries[tags.username] = tags.username
+    client.say(
+      channel,
+      `You have been entered into the giveaway, @${tags.username}`
+    )
+  } else if (message.includes('!enter') && entries[tags.username] === tags.username && giveawayIsActive && !isWinner) {
+    client.say(
+      channel,
+      `You have already been entered into the giveaway, @${tags.username}`
+    )
+  } else if (message.includes('!enter') && isWinner && giveawayIsActive) {
+    client.say(
+      channel,
+      `@${tags.username}, the giveaway has passed :( @${isWinner} has already been chosen as our giveaway winner!`)
+  }
+  if (message === '!giveaway on' && tags.mod && !giveawayIsActive) {
+    client2.say(channel, `@${tags.username}, giveaway feature enabled. Use !enter to enter the giveaway :)`)
+    giveawayIsActive = true
+  } 
+  if (message === '!giveaway off' && tags.mod && giveawayIsActive) {
+    client2.say(channel, `@${tags.username}, giveaway feature disabled.`)
+    giveawayIsActive = false
+    isWinner = false
+    entries = {}
+  }
+  if (message === '!choosewinner' && tags.mod === true && !isWinner && giveawayIsActive) {
+    const entriesArr = Object.values(entries)
+    const randomNum = Math.floor(Math.random() * entriesArr.length)
+    const winner = entriesArr[randomNum]
+    isWinner = winner
+    client.say(
+      channel,
+      `We have a winner! @${winner}, congratulations! Hope you're ready to claim your prize :)`
+    )
+  } else if (message === '!choosewinner' && tags.mod === true && isWinner && giveawayIsActive) {
+    client.say(
+      channel,
+      `@${isWinner} has already been chosen as our giveaway winner! We appreciate everyone joining the giveaway! :)`
+    )
   }
   console.log(`${tags['display-name']}: ${message}`)
 })
