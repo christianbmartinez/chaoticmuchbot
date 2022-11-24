@@ -138,7 +138,7 @@ const client2 = new tmi.Client({
     username: process.env.TWITCH_BOT_USERNAME,
     password: process.env.TWITCH_ACCESS_TOKEN,
   },
-  channels: ['chaoticmuch'],
+  channels: ['chaoticmuchbot'],
 })
 
 client.connect()
@@ -271,15 +271,21 @@ client2.on('message', (channel, tags, message, self) => {
     isWinner = false
     entries = {}
   }
+  
   if (message === '!choosewinner' && tags.mod === true && !isWinner && giveawayIsActive) {
     const entriesArr = Object.values(entries)
     const randomNum = Math.floor(Math.random() * entriesArr.length)
     const winner = entriesArr[randomNum]
-    isWinner = winner
+    isWinner =  winner 
+    isWinner !== undefined ? 
     client.say(
       channel,
       `We have a winner! @${winner}, congratulations! Hope you're ready to claim your prize :)`
-    )
+    ) :
+    client.say(
+      channel,
+      `@${tags.username}, no one has entered the giveaway yet`
+    ) 
   } else if (message === '!choosewinner' && tags.mod === true && isWinner && giveawayIsActive) {
     client.say(
       channel,
