@@ -37,16 +37,16 @@ async function getApexStats() {
   try {
     const response = await axios.get(
       `https://api.mozambiquehe.re/bridge?auth=${process.env.APEX_STATS_AUTH}&uid=1006162359940&platform=PC`
-    )
+    ) 
     apexStats = `
-    Rank: ${response.data.global.rank.rankName}, 
-    RP: ${response.data.global.rank.rankScore}, 
-    Position:# ${response.data.global.rank.ladderPosPlatform}, 
-    Legend: ${response.data.legends.selected.LegendName}, 
-    Legend Kills: ${response.data.legends.selected.data[0].value}, 
-    Skin: ${response.data.legends.selected.gameInfo.skin}, 
-    Pose: ${response.data.legends.selected.gameInfo.pose}, 
-    Frame: ${response.data.legends.selected.gameInfo.frame}`
+    Rank: ${response.data.global.rank.rankName ? response.data.global.rank.rankName : undefined}, 
+    RP: ${response.data.global.rank.rankScore ? response.data.global.rank.rankScore : undefined}, 
+    Position:# ${response.data.global.rank.ladderPosPlatform ? response.data.global.rank.ladderPosPlatform : undefined}, 
+    Legend: ${response.data.legends.selected.LegendName ? response.data.legends.selected.LegendName : undefined}, 
+    Legend Kills: ${response.data.legends.selected.data[0].value ? response.data.legends.selected.data[0].value : undefined}, 
+    Skin: ${response.data.legends.selected.gameInfo.skin ? response.data.legends.selected.gameInfo.skin : undefined}, 
+    Pose: ${response.data.legends.selected.gameInfo.pose ? response.data.legends.selected.gameInfo.pose : undefined}, 
+    Frame: ${response.data.legends.selected.gameInfo.frame ? response.data.legends.selected.gameInfo.frame : undefined}`
     console.log('Got apex data')
   } catch (error) {
     console.error(error)
@@ -225,7 +225,7 @@ client2.on('message', (channel, tags, message, self) => {
   if (message.includes('!help')) {
     client2.say(
       channel,
-      `@${tags.username}, streamelements commands: https://streamelements.com/chaoticmuch-7861/commands chaoticmuchbot commands: !now !livestats !weather !latesttweet !joke !pickupline`
+      `@${tags.username}, streamelements commands: https://streamelements.com/chaoticmuch-7861/commands chaoticmuchbot commands: !now !livestats !weather !latesttweet !joke !pickupline !8ball [question]`
     )
   } 
 
