@@ -174,6 +174,10 @@ let isWinner
 client2.on('message', (channel, tags, message, self) => {
   if (self) return
 
+  if (message === 'gg' || 'GG' ) {
+    client2.say(channel, `GG :)`)
+  } 
+
   if (message.includes('!now') && message !== '!now off' && tags['display-name'] !== 'StreamElements' && tourneyIsActive) {
     client2.say(channel, `@${tags.username}, ${nowResponse}`)
   } 
