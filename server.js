@@ -3,6 +3,7 @@ require('dotenv').config()
 const axios = require('axios')
 const needle = require('needle')
 const {evaluate} = require('decimal-eval')
+const {eightBall} = require('./eightBall')
 
 let tweet
 let tweetId
@@ -52,6 +53,7 @@ async function getApexStats() {
   }
 }
 getApexStats()
+setInterval(getApexStats,300000)
 
 let degrees
 
@@ -83,15 +85,14 @@ async function getCelcius() {
 }
 getCelcius()
 
-const baseURL = "https://v2.jokeapi.dev"
-const categories = ["Misc", "Pun", "Spooky", "Christmas"]
-const params = [
-  "blacklistFlags=nsfw,religious,racist,sexist"
-]
-
 let joke
 
 async function getJoke() {
+  const baseURL = "https://v2.jokeapi.dev"
+  const categories = ["Misc", "Pun", "Spooky", "Christmas"]
+  const params = [
+  "blacklistFlags=nsfw,religious,racist,sexist"
+]
   try {
     const response = await axios.get(baseURL + "/joke/" + categories.join(",") + "?" + params.join("&"))
     if (response.data.setup && response.data.delivery) {     
@@ -138,7 +139,7 @@ const client2 = new tmi.Client({
     username: process.env.TWITCH_BOT_USERNAME,
     password: process.env.TWITCH_ACCESS_TOKEN,
   },
-  channels: ['chaoticmuchbot'],
+  channels: ['chaoticmuch'],
 })
 
 client.connect()
@@ -243,6 +244,12 @@ client2.on('message', (channel, tags, message, self) => {
       `@${tags.username}, chaotics latest tweet was "${tweet}" https://twitter.com/G2Chaotic/status/${tweetId}`
     )
     getLatestTweet()
+  }
+
+  if (message.includes('!8ball')) {
+    const randomNum = Math.floor(Math.random() * eightBall.length)
+    const eightBallResponse = eightBall[randomNum]
+    client2.say(channel, `@${tags.username}, ${eightBallResponse}`)
   }
 
   if (message.includes('!enter') && entries[tags.username] !== tags.username && giveawayIsActive && !isWinner) {
