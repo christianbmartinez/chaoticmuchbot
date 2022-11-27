@@ -36,7 +36,7 @@ let apexStats = 'Failed to fetch current apex stats'
 async function getApexStats() {
   try {
     const response = await axios.get(
-      `https://api.mozambiquehe.re/bridge?auth=${process.env.APEX_STATS_AUTH}&uid=1006162359940&platform=PC`
+      `https://api.mozambiquehe.re/bridge?auth=${process.env.APEX_STATS_AUTH}&uid=1002896792850&platform=PC`
     ) 
     apexStats = `
     Rank: ${response.data.global.rank.rankName ? response.data.global.rank.rankName : undefined}, 
@@ -47,7 +47,7 @@ async function getApexStats() {
     Skin: ${response.data.legends.selected.gameInfo.skin ? response.data.legends.selected.gameInfo.skin : undefined}, 
     Pose: ${response.data.legends.selected.gameInfo.pose ? response.data.legends.selected.gameInfo.pose : undefined}, 
     Frame: ${response.data.legends.selected.gameInfo.frame ? response.data.legends.selected.gameInfo.frame : undefined}`
-    console.log('Got apex data')
+    console.log('Got apex data', response.data)
   } catch (error) {
     console.error(error)
   }
@@ -128,7 +128,7 @@ const client = new tmi.Client({
     username: process.env.TWITCH_BOT_USERNAME,
     password: process.env.TWITCH_ACCESS_TOKEN,
   },
-  channels: ['TSM_ImperialHal'],
+  channels: ['sweetdreams'],
 })
 
 const client2 = new tmi.Client({
