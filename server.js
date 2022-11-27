@@ -128,7 +128,7 @@ const client = new tmi.Client({
     username: process.env.TWITCH_BOT_USERNAME,
     password: process.env.TWITCH_ACCESS_TOKEN,
   },
-  channels: ['sweetdreams'],
+  channels: ['tsm_imperialhal'],
 })
 
 const client2 = new tmi.Client({
