@@ -47,7 +47,7 @@ async function getApexStats() {
     Skin: ${response.data.legends.selected.gameInfo.skin ? response.data.legends.selected.gameInfo.skin : undefined}, 
     Pose: ${response.data.legends.selected.gameInfo.pose ? response.data.legends.selected.gameInfo.pose : undefined}, 
     Frame: ${response.data.legends.selected.gameInfo.frame ? response.data.legends.selected.gameInfo.frame : undefined}`
-    console.log('Got apex data', response.data)
+    console.log('Got apex data')
   } catch (error) {
     console.error(error)
   }
