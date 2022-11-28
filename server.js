@@ -85,28 +85,6 @@ async function getCelcius() {
 }
 getCelcius()
 
-let joke
-
-async function getJoke() {
-  const baseURL = "https://v2.jokeapi.dev"
-  const categories = ["Misc", "Pun", "Spooky", "Christmas"]
-  const params = [
-  "blacklistFlags=nsfw,religious,racist,sexist"
-]
-  try {
-    const response = await axios.get(baseURL + "/joke/" + categories.join(",") + "?" + params.join("&"))
-    if (response.data.setup && response.data.delivery) {     
-      joke = response.data.setup + ' ' + response.data.delivery
-    } else {
-      joke = response.data.joke
-    }
-    console.log('Got joke data')
-  } catch (error) {
-    console.error(error)
-  }
-}
-getJoke()
-
 let pickupLine
 
 async function getPickupLine() {
@@ -200,11 +178,6 @@ client2.on('message', (channel, tags, message, self) => {
     getPickupLine()
   }
 
-  if (message.includes('!joke')) {
-    client2.say(channel, `@${tags.username}, ${joke}`)
-    getJoke()
-  }
-
   if (message.includes('@chaoticmuchbot')) {
     client2.say(channel, `@${tags.username}, go f*** yourself :)`)
   }
@@ -225,7 +198,7 @@ client2.on('message', (channel, tags, message, self) => {
   if (message.includes('!help')) {
     client2.say(
       channel,
-      `@${tags.username}, streamelements commands: https://streamelements.com/chaoticmuch-7861/commands chaoticmuchbot commands: !now !livestats !weather !latesttweet !joke !pickupline !8ball [question]`
+      `@${tags.username}, streamelements commands: https://streamelements.com/chaoticmuch-7861/commands chaoticmuchbot commands: !now !livestats !weather !latesttweet !pickupline !8ball [question]`
     )
   } 
 
