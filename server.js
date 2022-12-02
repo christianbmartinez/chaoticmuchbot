@@ -2,8 +2,8 @@ const tmi = require('tmi.js')
 require('dotenv').config()
 const axios = require('axios')
 const needle = require('needle')
-const {evaluate} = require('decimal-eval')
-const {eightBall} = require('./eightBall')
+const { evaluate } = require('decimal-eval')
+const { eightBall } = require('./eightBall')
 
 let tweet
 let tweetId
@@ -37,23 +37,55 @@ async function getApexStats() {
   try {
     const response = await axios.get(
       `https://api.mozambiquehe.re/bridge?auth=${process.env.APEX_STATS_AUTH}&uid=1002896792850&platform=PC`
-    ) 
+    )
     apexStats = `
-    Rank: ${response.data.global.rank.rankName ? response.data.global.rank.rankName : undefined}, 
-    RP: ${response.data.global.rank.rankScore ? response.data.global.rank.rankScore : undefined}, 
-    Position:# ${response.data.global.rank.ladderPosPlatform ? response.data.global.rank.ladderPosPlatform : undefined}, 
-    Legend: ${response.data.legends.selected.LegendName ? response.data.legends.selected.LegendName : undefined}, 
-    Legend Kills: ${response.data.legends.selected.data[0].value ? response.data.legends.selected.data[0].value : undefined}, 
-    Skin: ${response.data.legends.selected.gameInfo.skin ? response.data.legends.selected.gameInfo.skin : undefined}, 
-    Pose: ${response.data.legends.selected.gameInfo.pose ? response.data.legends.selected.gameInfo.pose : undefined}, 
-    Frame: ${response.data.legends.selected.gameInfo.frame ? response.data.legends.selected.gameInfo.frame : undefined}`
+    Rank: ${
+      response.data.global.rank.rankName
+        ? response.data.global.rank.rankName
+        : undefined
+    }, 
+    RP: ${
+      response.data.global.rank.rankScore
+        ? response.data.global.rank.rankScore
+        : undefined
+    }, 
+    Position:# ${
+      response.data.global.rank.ladderPosPlatform
+        ? response.data.global.rank.ladderPosPlatform
+        : undefined
+    }, 
+    Legend: ${
+      response.data.legends.selected.LegendName
+        ? response.data.legends.selected.LegendName
+        : undefined
+    }, 
+    Legend Kills: ${
+      response.data.legends.selected.data[0].value
+        ? response.data.legends.selected.data[0].value
+        : undefined
+    }, 
+    Skin: ${
+      response.data.legends.selected.gameInfo.skin
+        ? response.data.legends.selected.gameInfo.skin
+        : undefined
+    }, 
+    Pose: ${
+      response.data.legends.selected.gameInfo.pose
+        ? response.data.legends.selected.gameInfo.pose
+        : undefined
+    }, 
+    Frame: ${
+      response.data.legends.selected.gameInfo.frame
+        ? response.data.legends.selected.gameInfo.frame
+        : undefined
+    }`
     console.log('Got apex data')
   } catch (error) {
     console.error(error)
   }
 }
 getApexStats()
-setInterval(getApexStats,300000)
+setInterval(getApexStats, 300000)
 
 let degrees
 
@@ -89,8 +121,8 @@ let pickupLine
 
 async function getPickupLine() {
   try {
-    const response = await axios.get('https://getpickuplines.herokuapp.com/lines/random')
-    pickupLine = response.data.line
+    const response = await axios.get('https://pickupline-api.herokuapp.com/')
+    pickupLine = response.data.pickup_line
     console.log('Got pickup line data')
   } catch (error) {
     console.error(error)
@@ -152,15 +184,23 @@ let isWinner
 client2.on('message', (channel, tags, message, self) => {
   if (self) return
 
-  if (message.includes('!now') && message !== '!now off' && tags['display-name'] !== 'StreamElements' && tourneyIsActive) {
+  if (
+    message.includes('!now') &&
+    message !== '!now off' &&
+    tags['display-name'] !== 'StreamElements' &&
+    tourneyIsActive
+  ) {
     client2.say(channel, `@${tags.username}, ${nowResponse}`)
-  } 
+  }
 
   if (message === '!now on' && tags.mod && !tourneyIsActive) {
     nowResponse = 'waiting for event data...'
-    client2.say(channel, `@${tags.username}, turned on data for !now... fetching... :)`)
+    client2.say(
+      channel,
+      `@${tags.username}, turned on data for !now... fetching... :)`
+    )
     tourneyIsActive = true
-  } 
+  }
 
   if (message === '!now off' && tags.mod && tourneyIsActive) {
     nowResponse = 'there are currently no events happening.'
@@ -183,7 +223,10 @@ client2.on('message', (channel, tags, message, self) => {
   }
 
   if (message.includes('!gamble')) {
-    client2.say(channel, `@${tags.username}, the quickest way to earn R301 Beamerz is to bet against chaotic in predictions Kappa`)
+    client2.say(
+      channel,
+      `@${tags.username}, the quickest way to earn R301 Beamerz is to bet against chaotic in predictions Kappa`
+    )
   }
 
   if (message.includes('!weather')) {
@@ -200,7 +243,7 @@ client2.on('message', (channel, tags, message, self) => {
       channel,
       `@${tags.username}, streamelements commands: https://streamelements.com/chaoticmuch-7861/commands chaoticmuchbot commands: !now !livestats !weather !latesttweet !pickupline !8ball [question]`
     )
-  } 
+  }
 
   if (message.includes('^')) {
     client2.say(channel, '^^^')
@@ -225,13 +268,23 @@ client2.on('message', (channel, tags, message, self) => {
     client2.say(channel, `@${tags.username}, ${eightBallResponse}`)
   }
 
-  if (message.includes('!enter') && entries[tags.username] !== tags.username && giveawayIsActive && !isWinner) {
+  if (
+    message.includes('!enter') &&
+    entries[tags.username] !== tags.username &&
+    giveawayIsActive &&
+    !isWinner
+  ) {
     entries[tags.username] = tags.username
     client.say(
       channel,
       `You have been entered into the giveaway, @${tags.username}`
     )
-  } else if (message.includes('!enter') && entries[tags.username] === tags.username && giveawayIsActive && !isWinner) {
+  } else if (
+    message.includes('!enter') &&
+    entries[tags.username] === tags.username &&
+    giveawayIsActive &&
+    !isWinner
+  ) {
     client.say(
       channel,
       `You have already been entered into the giveaway, @${tags.username}`
@@ -239,34 +292,48 @@ client2.on('message', (channel, tags, message, self) => {
   } else if (message.includes('!enter') && isWinner && giveawayIsActive) {
     client.say(
       channel,
-      `@${tags.username}, the giveaway has passed :( @${isWinner} has already been chosen as our giveaway winner!`)
+      `@${tags.username}, the giveaway has passed :( @${isWinner} has already been chosen as our giveaway winner!`
+    )
   }
   if (message === '!giveaway on' && tags.mod && !giveawayIsActive) {
-    client2.say(channel, `@${tags.username}, giveaway feature enabled. Use !enter to enter the giveaway :)`)
+    client2.say(
+      channel,
+      `@${tags.username}, giveaway feature enabled. Use !enter to enter the giveaway :)`
+    )
     giveawayIsActive = true
-  } 
+  }
   if (message === '!giveaway off' && tags.mod && giveawayIsActive) {
     client2.say(channel, `@${tags.username}, giveaway feature disabled.`)
     giveawayIsActive = false
     isWinner = false
     entries = {}
   }
-  
-  if (message === '!choosewinner' && tags.mod === true && !isWinner && giveawayIsActive) {
+
+  if (
+    message === '!choosewinner' &&
+    tags.mod === true &&
+    !isWinner &&
+    giveawayIsActive
+  ) {
     const entriesArr = Object.values(entries)
     const randomNum = Math.floor(Math.random() * entriesArr.length)
     const winner = entriesArr[randomNum]
-    isWinner =  winner 
-    isWinner !== undefined ? 
-    client.say(
-      channel,
-      `We have a winner! @${winner}, congratulations! Hope you're ready to claim your prize :)`
-    ) :
-    client.say(
-      channel,
-      `@${tags.username}, no one has entered the giveaway yet`
-    ) 
-  } else if (message === '!choosewinner' && tags.mod === true && isWinner && giveawayIsActive) {
+    isWinner = winner
+    isWinner !== undefined
+      ? client.say(
+          channel,
+          `We have a winner! @${winner}, congratulations! Hope you're ready to claim your prize :)`
+        )
+      : client.say(
+          channel,
+          `@${tags.username}, no one has entered the giveaway yet`
+        )
+  } else if (
+    message === '!choosewinner' &&
+    tags.mod === true &&
+    isWinner &&
+    giveawayIsActive
+  ) {
     client.say(
       channel,
       `@${isWinner} has already been chosen as our giveaway winner! We appreciate everyone joining the giveaway! :)`
