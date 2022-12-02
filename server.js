@@ -181,6 +181,11 @@ let giveawayIsActive = false
 let tourneyIsActive = false
 let isWinner
 
+client2.on('ban', (channel, username, reason, userstate) => {
+  console.log(channel, username, reason, userstate)
+  //client2.say(channel, ${nowResponse}`)
+})
+
 client2.on('message', (channel, tags, message, self) => {
   if (self) return
 
