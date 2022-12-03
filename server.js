@@ -199,12 +199,11 @@ let giveawayIsActive = false
 let tourneyIsActive = false
 let isWinner
 
-client.on("connected", (address, port) => {
   setInterval(() => {
     client2.say('#chaoticmuch', `Watch chaotics recent youtube video, ${videoTitle} https://www.youtube.com/watch?v=${videoId}`)
-  }, 3600000000)
+  }, 1000 * 60 * 60)
   console.log(`Connected to ${address}:${port}`)
-})
+
 
 client2.on('message', (channel, tags, message, self) => {
   if (self) return
