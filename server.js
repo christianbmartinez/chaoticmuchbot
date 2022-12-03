@@ -130,6 +130,24 @@ async function getPickupLine() {
 }
 getPickupLine()
 
+let videoTitle
+let videoId
+
+async function getLatestVideo() {
+  try {
+    const response = await axios.get(
+      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=UCgjXO8vYQO1_A-9diNrIsAQ&maxResults=1&order=date&key=${process.env.YOUTUBE_API_KEY}`
+    )
+    console.log('Got yt video data')
+    videoTitle = response.data.items[0].snippet.title
+    videoId = response.data.items[0].id.videoId
+
+  } catch (error) {
+    console.error(error)
+  }
+}
+getLatestVideo()
+
 const client = new tmi.Client({
   connection: {
     reconnect: true,
@@ -180,6 +198,13 @@ let entries = {}
 let giveawayIsActive = false
 let tourneyIsActive = false
 let isWinner
+
+client.on("connected", (address, port) => {
+  setInterval(() => {
+    client2.say('#chaoticmuch', `Watch chaotics recent youtube video, ${videoTitle} https://www.youtube.com/watch?v=${videoId}`)
+  }, 3600000000)
+  console.log(`Connected to ${address}:${port}`)
+})
 
 client2.on('message', (channel, tags, message, self) => {
   if (self) return
