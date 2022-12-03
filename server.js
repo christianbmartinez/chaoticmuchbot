@@ -202,7 +202,6 @@ let isWinner
   setInterval(() => {
     client2.say('#chaoticmuch', `Watch chaotics recent youtube video, ${videoTitle} https://www.youtube.com/watch?v=${videoId}`)
   }, 1000 * 60 * 60)
-  console.log(`Connected to ${address}:${port}`)
 
 
 client2.on('message', (channel, tags, message, self) => {
