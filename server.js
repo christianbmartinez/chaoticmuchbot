@@ -84,7 +84,7 @@ getLatestTweet()
 //    console.error(error)
 //  }
 //}
-//getApexStats()
+///getApexStats()
 //setInterval(getApexStats, 300000)
 
 let degrees
