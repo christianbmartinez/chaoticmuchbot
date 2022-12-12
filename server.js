@@ -177,27 +177,27 @@ console.log('Listening for messages..')
 
 let nowResponse
 
-//client.on('message', (channel, tags, message, self) => {
-//  if (tags['display-name'] == 'OversightEsports') {
-//    console.log(`${tags['display-name']}: ${message}`)
-//    nowResponse = message
-//  }
-//})
-
-async function getAlgsScores() {
-  try {
-    const response = await axios.get('https://algs.tas.gg/api/match/8')
-    nowResponse = response.data
-    console.log('Got algs scores data')
-  } catch (error) {
-    console.error(error)
+client.on('message', (channel, tags, message, self) => {
+  if (tags['display-name'] == 'OversightEsports') {
+    console.log(`${tags['display-name']}: ${message}`)
+    nowResponse = message
   }
-}
-getAlgsScores()
+})
 
-setInterval(() => {
-  getAlgsScores()
-}, 1000 * 60 )
+//async function getAlgsScores() {
+//  try {
+//    const response = await axios.get('https://algs.tas.gg/api/match/8')
+//    nowResponse = response.data
+//    console.log('Got algs scores data')
+//  } catch (error) {
+//    console.error(error)
+//  }
+//}
+//getAlgsScores()
+//
+//setInterval(() => {
+//  getAlgsScores()
+//}, 1000 * 60 )
 
 function isMathProblem(str) {
   return /^(\d*\.?\d*)\s?[-+/*]\s?(\d*\.?\d*)$/g.test(str)
