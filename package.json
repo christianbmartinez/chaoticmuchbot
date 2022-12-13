@@ -4,7 +4,7 @@
   "description": "A chat bot for twitch",
   "main": "server.js",
   "scripts": {
-    "start": "node server.min.js"
+    "start": "node server.js"
   },
   "author": "Christian B. Martinez",
   "license": "ISC",
