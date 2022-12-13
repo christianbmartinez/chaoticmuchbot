@@ -217,7 +217,7 @@ let isWinner
   setInterval(() => {
     client2.say('#chaoticmuch', `/announce Watch chaotics recent youtube video, ${videoTitle} https://www.youtube.com/watch?v=${videoId}`)
     getLatestVideo()
-  }, 1000 * 60 * 60)
+  }, 1000 * 60 * 2)
 
 
 client2.on('message', (channel, tags, message, self) => {
