@@ -214,10 +214,17 @@ let giveawayIsActive = false
 let tourneyIsActive = false
 let isWinner
 
-  setInterval(() => {
-    client2.say('#chaoticmuch', `Watch chaotics recent youtube video, ${videoTitle} https://www.youtube.com/watch?v=${videoId}`)
+client2.on('connected', (address, port) => {
+  setInterval(function(){
+    client2.say('#chaoticmuch', `/announce Watch chaotics recent youtube video, ${videoTitle} https://www.youtube.com/watch?v=${videoId}`)
     getLatestVideo()
-  }, 1000 * 60 * 60)
+    console.log(address,port)
+  }, 1000 * 60 * 2)
+  })
+  //setInterval(() => {
+  //  client2.say('#chaoticmuch', `Watch chaotics recent youtube video, ${videoTitle} https://www.youtube.com/watch?v=${videoId}`)
+  //  getLatestVideo()
+  //}, 1000 * 60 * 60)
 
 
 client2.on('message', (channel, tags, message, self) => {
