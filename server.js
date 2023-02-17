@@ -286,7 +286,7 @@ client2.on('message', (channel, tags, message, self) => {
   }
 
   if (message.includes('!latesttweet')) {
-    client.say(
+    client2.say(
       channel,
       `@${tags.username}, chaotics latest tweet was "${tweet}" https://twitter.com/chaoticmuch/status/${tweetId}`
     )
