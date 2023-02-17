@@ -35,7 +35,7 @@ let apexStats = 'Failed to fetch current apex stats'
 async function getApexStats() {
   try {
     const response = await axios.get(
-      `https://api.mozambiquehe.re/bridge?auth=${process.env.APEX_STATS_AUTH}&uid=1002896792850&platform=PC`
+      `https://api.mozambiquehe.re/bridge?auth=${process.env.APEX_STATS_AUTH}&uid=1006162359940&platform=PC`
     )
     apexStats = `
     Rank: ${
