@@ -151,16 +151,16 @@ async function getLatestVideo() {
 }
 getLatestVideo()
 
-const client = new tmi.Client({
-  connection: {
-    reconnect: true,
-  },
-  identity: {
-    username: process.env.TWITCH_BOT_USERNAME,
-    password: process.env.TWITCH_ACCESS_TOKEN,
-  },
-  channels: ['tsm_imperialhal'],
-})
+//const client = new tmi.Client({
+//  connection: {
+//    reconnect: true,
+//  },
+//  identity: {
+//    username: process.env.TWITCH_BOT_USERNAME,
+//    password: process.env.TWITCH_ACCESS_TOKEN,
+//  },
+//  channels: ['tsm_imperialhal'],
+//})
 
 const client2 = new tmi.Client({
   connection: {
@@ -250,10 +250,10 @@ client2.on('message', (channel, tags, message, self) => {
     tourneyIsActive = false
   }
 
-  //if (message.includes('!livestats')) {
-  //  client2.say(channel, `@${tags.username}, ${apexStats}`)
-  //  getApexStats()
-  //}
+  if (message.includes('!livestats')) {
+    client2.say(channel, `@${tags.username}, ${apexStats}`)
+    getApexStats()
+  }
 
   if (message.includes('!pickupline')) {
     client2.say(channel, `@${tags.username}, ${pickupLine}`)
