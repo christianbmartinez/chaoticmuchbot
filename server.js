@@ -1,35 +1,34 @@
 const tmi = require('tmi.js')
 require('dotenv').config()
 const axios = require('axios')
-//const needle = require('needle')
+const needle = require('needle')
 const { evaluate } = require('decimal-eval')
 const { eightBall } = require('./eightBall')
 
-//let tweet
-//let tweetId
-
-//async function getLatestTweet() {
-//  const twittertoken = process.env.TWITTER_BEARER_TOKEN
-//  const endpointUrl = 'https://api.twitter.com/2/tweets/search/recent'
-//  const params = {
-//    query: 'from:g2chaotic -is:retweet',
-//    'tweet.fields': 'author_id',
-//  }
-//  const res = await needle('get', endpointUrl, params, {
-//    headers: {
-//      'User-Agent': 'v2RecentSearchJS',
-//      authorization: `Bearer ${twittertoken}`,
-//    },
-//  })
-//  if (res.body) {
-//    tweet = res.body.data[0].text
-//    tweetId = res.body.data[0].id
-//    console.log('Got latest tweet data')
-//  } else {
-//    throw new Error('Unsuccessful request')
-//  }
-//}
-//getLatestTweet()
+let tweet
+let tweetId
+async function getLatestTweet() {
+  const twittertoken = process.env.TWITTER_BEARER_TOKEN
+  const endpointUrl = 'https://api.twitter.com/2/tweets/search/recent'
+  const params = {
+    query: 'from:chaoticmuch -is:retweet',
+    'tweet.fields': 'author_id',
+  }
+  const res = await needle('get', endpointUrl, params, {
+    headers: {
+      'User-Agent': 'v2RecentSearchJS',
+      authorization: `Bearer ${twittertoken}`,
+    },
+  })
+  if (res.body) {
+    tweet = res.body.data[0].text
+    tweetId = res.body.data[0].id
+    console.log('Got latest tweet data', tweet, tweetId)
+  } else {
+    throw new Error('Unsuccessful request')
+  }
+}
+getLatestTweet()
 
 //let apexStats = 'Failed to fetch current apex stats'
 //
@@ -184,20 +183,20 @@ let nowResponse
 //  }
 //})
 
-async function getAlgsScores() {
-  try {
-    const response = await axios.get('https://algs.tas.gg/api/match/1276')
-    nowResponse = response.data
-    console.log('Got algs scores data')
-  } catch (error) {
-    console.error(error)
-  }
-}
-getAlgsScores()
+//async function getAlgsScores() {
+//  try {
+//    const response = await axios.get('https://algs.tas.gg/api/match/1276')
+//    nowResponse = response.data
+//    console.log('Got algs scores data')
+//  } catch (error) {
+//    console.error(error)
+//  }
+//}
+//getAlgsScores()
 
-setInterval(() => {
-  getAlgsScores()
-}, 1000 * 60 )
+//setInterval(() => {
+//  getAlgsScores()
+//}, 1000 * 60 )
 
 function isMathProblem(str) {
   return /^(\d*\.?\d*)\s?[-+/*]\s?(\d*\.?\d*)$/g.test(str)
@@ -261,17 +260,10 @@ client2.on('message', (channel, tags, message, self) => {
     client2.say(channel, `@${tags.username}, go f*** yourself :)`)
   }
 
-  if (message.includes('!gamble')) {
-    client2.say(
-      channel,
-      `@${tags.username}, the quickest way to earn R301 Beamerz is to bet against chaotic in predictions Kappa`
-    )
-  }
-
   if (message.includes('!weather')) {
     client2.say(
       channel,
-      `@${tags.username}, it is currently ${degrees} degrees (${celcius} celcius) in Los Angeles for chaotic`
+      `@${tags.username}, it is currently ${degrees} degrees (${celcius} celcius) where chaotic lives`
     )
     getDegrees()
     getCelcius()
@@ -280,7 +272,7 @@ client2.on('message', (channel, tags, message, self) => {
   if (message.includes('!help')) {
     client2.say(
       channel,
-      `@${tags.username}, streamelements commands: https://streamelements.com/chaoticmuch-7861/commands chaoticmuchbot commands: !now !livestats !weather !latesttweet !pickupline !8ball [question]`
+      `@${tags.username}, streamelements commands: https://streamelements.com/chaoticmuch-7861/commands chaoticmuchbot commands: !weather !latesttweet !pickupline !8ball [question]`
     )
   }
 
@@ -293,13 +285,13 @@ client2.on('message', (channel, tags, message, self) => {
     client2.say(channel, `@${tags.username}, The answer is ${math}`)
   }
 
-  //if (message.includes('!latesttweet')) {
-  //  client.say(
-  //    channel,
-  //    `@${tags.username}, chaotics latest tweet was "${tweet}" https://twitter.com/G2Chaotic/status/${tweetId}`
-  //  )
-  //  getLatestTweet()
-  //}
+  if (message.includes('!latesttweet')) {
+    client.say(
+      channel,
+      `@${tags.username}, chaotics latest tweet was "${tweet}" https://twitter.com/chaoticmuch/status/${tweetId}`
+    )
+    getLatestTweet()
+  }
 
   if (message.includes('!8ball')) {
     const randomNum = Math.floor(Math.random() * eightBall.length)
@@ -314,7 +306,7 @@ client2.on('message', (channel, tags, message, self) => {
     !isWinner
   ) {
     entries[tags.username] = tags.username
-    client.say(
+    client2.say(
       channel,
       `You have been entered into the giveaway, @${tags.username}`
     )
@@ -324,12 +316,12 @@ client2.on('message', (channel, tags, message, self) => {
     giveawayIsActive &&
     !isWinner
   ) {
-    client.say(
+    client2.say(
       channel,
       `You have already been entered into the giveaway, @${tags.username}`
     )
   } else if (message.includes('!enter') && isWinner && giveawayIsActive) {
-    client.say(
+    client2.say(
       channel,
       `@${tags.username}, the giveaway has passed :( @${isWinner} has already been chosen as our giveaway winner!`
     )
@@ -359,11 +351,11 @@ client2.on('message', (channel, tags, message, self) => {
     const winner = entriesArr[randomNum]
     isWinner = winner
     isWinner !== undefined
-      ? client.say(
+      ? client2.say(
           channel,
           `We have a winner! @${winner}, congratulations! Hope you're ready to claim your prize :)`
         )
-      : client.say(
+      : client2.say(
           channel,
           `@${tags.username}, no one has entered the giveaway yet`
         )
@@ -373,7 +365,7 @@ client2.on('message', (channel, tags, message, self) => {
     isWinner &&
     giveawayIsActive
   ) {
-    client.say(
+    client2.say(
       channel,
       `@${isWinner} has already been chosen as our giveaway winner! We appreciate everyone joining the giveaway! :)`
     )
