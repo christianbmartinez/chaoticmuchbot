@@ -284,6 +284,14 @@ client2.on('message', (channel, tags, message, self) => {
     client2.say(channel, '^^^')
   }
 
+  if (message === '!bottest' && tags.mod) {
+    client2.ban(channel, 'fuhhnqbot').then(function() {
+      console.log("Successfully banned " + 'fuhhnqbot' + " on " + channel + "!");
+  }, function(err) {
+      console.log(err)
+  })
+  }
+
   if (isMathProblem(message)) {
     performMath(message)
     client2.say(channel, `@${tags.username}, The answer is ${math}`)
