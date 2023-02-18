@@ -287,7 +287,7 @@ client2.on('message', (channel, tags, message, self) => {
   if (message === '!bottest' && tags.mod) {
     client2.ban(
       channel,
-      '@fuhhnqbot', 
+      'fuhhnqbot', 
       'testing'
     )
   }
