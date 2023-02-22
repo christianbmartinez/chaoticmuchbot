@@ -151,16 +151,16 @@ async function getLatestVideo() {
 }
 getLatestVideo()
 
-//const client = new tmi.Client({
-//  connection: {
-//    reconnect: true,
-//  },
-//  identity: {
-//    username: process.env.TWITCH_BOT_USERNAME,
-//    password: process.env.TWITCH_ACCESS_TOKEN,
-//  },
-//  channels: ['tsm_imperialhal'],
-//})
+const client = new tmi.Client({
+  connection: {
+    reconnect: true,
+  },
+  identity: {
+    username: process.env.TWITCH_BOT_USERNAME,
+    password: process.env.TWITCH_ACCESS_TOKEN,
+  },
+  channels: ['tsm_imperialhal'],
+})
 
 const client2 = new tmi.Client({
   connection: {
@@ -173,19 +173,19 @@ const client2 = new tmi.Client({
   channels: ['chaoticmuch'],
 })
 
-//client.connect()
+client.connect()
 client2.connect()
 
 console.log('Listening for messages..')
 
 let nowResponse
 
-//client.on('message', (channel, tags, message, self) => {
-//  if (tags['display-name'] == 'OversightEsports') {
-//    console.log(`${tags['display-name']}: ${message}`)
-//    nowResponse = message
-//  }
-//})
+client.on('message', (channel, tags, message, self) => {
+  if (tags['display-name'] == 'OversightEsports') {
+    console.log(`${tags['display-name']}: ${message}`)
+    nowResponse = message
+  }
+})
 
 //async function getAlgsScores() {
 //  try {
