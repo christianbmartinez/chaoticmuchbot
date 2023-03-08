@@ -235,7 +235,7 @@ client2.on('message', (channel, tags, message, self) => {
     client2.say(channel, `@${tags.username}, ${nowResponse}`)
   }
 
-  if (message === '!now on' && tags.mod && !tourneyIsActive) {
+  if (message === '!now on' && !tourneyIsActive) {
     nowResponse = 'waiting for event data...'
     client2.say(
       channel,
@@ -244,7 +244,7 @@ client2.on('message', (channel, tags, message, self) => {
     tourneyIsActive = true
   }
 
-  if (message === '!now off' && tags.mod && tourneyIsActive) {
+  if (message === '!now off' && tourneyIsActive) {
     nowResponse = 'there are currently no events happening.'
     client2.say(channel, `@${tags.username}, turned off data for !now`)
     tourneyIsActive = false
