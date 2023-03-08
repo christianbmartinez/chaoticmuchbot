@@ -170,7 +170,7 @@ const client2 = new tmi.Client({
     username: process.env.TWITCH_BOT_USERNAME,
     password: process.env.TWITCH_ACCESS_TOKEN,
   },
-  channels: ['dezignful'],
+  channels: ['chaoticmuch'],
 })
 
 client.connect()
@@ -235,7 +235,7 @@ client2.on('message', (channel, tags, message, self) => {
     client2.say(channel, `@${tags.username}, ${nowResponse}`)
   }
 
-  if (message === '!now on' && !tourneyIsActive) {
+  if (message === '!now on' && tags.mod && !tourneyIsActive) {
     nowResponse = 'waiting for event data...'
     client2.say(
       channel,
@@ -244,7 +244,7 @@ client2.on('message', (channel, tags, message, self) => {
     tourneyIsActive = true
   }
 
-  if (message === '!now off' && tourneyIsActive) {
+  if (message === '!now off' && tags.mod && tourneyIsActive) {
     nowResponse = 'there are currently no events happening.'
     client2.say(channel, `@${tags.username}, turned off data for !now`)
     tourneyIsActive = false
