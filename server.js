@@ -279,7 +279,7 @@ client2.on('message', (channel, tags, message, self) => {
     client2.say(channel, `@${tags.username}, ${pickupLine}`)
     getPickupLine()
   }
-  if (message.includes('@chaoticmuchbot') && tags.mod || tags.badges.vip) { // Make this available to vips and mods only
+  if (message.includes('@chaoticmuchbot') && tags.mod || tags.badges.vip || tags.badges.broadcaster) { // Make this available to vips and mods only
     async function getResponse() {
       await runCompletion(message)
       client2.say(channel, `@${tags.username}, ${aiResponse}`)
