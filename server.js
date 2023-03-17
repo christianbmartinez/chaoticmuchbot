@@ -285,10 +285,7 @@ client2.on('message', (channel, tags, message, self) => {
       client2.say(channel, `@${tags.username}, ${aiResponse}`)
     }
     getResponse()
-  } else if (message.includes('@chaoticmuchbot') && !tags.mod || !tags.badges.vip || !tags.badges.broadcaster) {
-    client2.say(channel, `@${tags.username}, go f*** yourself :)`)
-  }
-
+  } 
   if (message.includes('!weather')) {
     client2.say(
       channel,
