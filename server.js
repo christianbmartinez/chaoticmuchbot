@@ -1,9 +1,29 @@
 const tmi = require('tmi.js')
-require('dotenv').config()
 const axios = require('axios')
 const needle = require('needle')
 const { evaluate } = require('decimal-eval')
 const { eightBall } = require('./eightBall')
+const { Configuration, OpenAIApi } = require('openai')
+require('dotenv').config()
+
+let aiResponse
+
+const configuration = new Configuration({
+  apiKey: process.env.OPEN_AI_SECRET,
+})
+
+const openai = new OpenAIApi(configuration)
+
+async function runCompletion(message) {
+  const completion = await openai.createCompletion({
+    model: 'text-davinci-003',
+    prompt: message,
+    max_tokens: 200,
+  })
+  aiResponse = completion.data.choices[0].text
+}
+
+runCompletion('Hello!')
 
 let tweet
 let tweetId
@@ -259,8 +279,14 @@ client2.on('message', (channel, tags, message, self) => {
     client2.say(channel, `@${tags.username}, ${pickupLine}`)
     getPickupLine()
   }
-
-  if (message.includes('@chaoticmuchbot')) {
+console.log(tags)
+  if (message.includes('@chaoticmuchbot') && tags.mod || tags.badges.vip) { // Make this available to vips and mods only
+    async function getResponse() {
+      await runCompletion(message)
+      client2.say(channel, `@${tags.username}, ${aiResponse}`)
+    }
+    getResponse()
+  } else {
     client2.say(channel, `@${tags.username}, go f*** yourself :)`)
   }
 
