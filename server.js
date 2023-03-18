@@ -267,7 +267,7 @@ client2.on('message', (channel, tags, message, self) => {
     getPickupLine()
   }
   console.log(tags)
-  if (message.includes('@chaoticmuchbot') && tags.mod || tags.badges.vip ==='1') { 
+  if (message.includes('@chaoticmuchbot') && tags.mod) { 
     async function runCompletion(message) {
       const completion = await openai.createCompletion({
         model: 'text-davinci-003',
