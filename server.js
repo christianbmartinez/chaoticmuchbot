@@ -389,5 +389,5 @@ runCompletion(message)
     )
   }
 
-  console.log(`${tags['display-name']}: ${message}, Doesn't have badges: ${tags.badges = null ? true : false}`)
+  console.log(`${tags['display-name']}: ${message}, Doesn't have badges: ${tags.badges === null ? true : false}`)
 })
