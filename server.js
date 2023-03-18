@@ -281,7 +281,15 @@ client2.on('message', (channel, tags, message, self) => {
     getPickupLine()
   }
   if (message.includes('@chaoticmuchbot') && checkForVip() === true) {
-    console.log('This message was triggered by a vip.')
+    async function runCompletions(message) {
+      const completions = await openai.createCompletion({
+        model: 'text-davinci-003',
+        prompt: message,
+        max_tokens: 200,
+      })
+      client2.say(channel, `@${tags.username}, ${completions.data.choices[0].text}`)
+    }
+runCompletions(message)
   }
   if (message.includes('@chaoticmuchbot') && tags.mod) { 
     async function runCompletion(message) {
