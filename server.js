@@ -398,6 +398,8 @@ runCompletion(message)
     return 'Yes'
    } else if (checkBadges() === false) {
      return 'No'
+   } else {
+    return 'No'
    }
   }
 
