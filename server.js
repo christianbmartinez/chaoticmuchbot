@@ -279,6 +279,7 @@ client2.on('message', (channel, tags, message, self) => {
     client2.say(channel, `@${tags.username}, ${pickupLine}`)
     getPickupLine()
   }
+  console.log(tags)
   if (message.includes('@chaoticmuchbot') && tags.mod || tags.badges.vip || tags.badges.broadcaster) { 
     async function getResponse() {
       await runCompletion(message)
