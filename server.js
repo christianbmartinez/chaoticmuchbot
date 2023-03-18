@@ -388,5 +388,5 @@ runCompletion(message)
       `@${isWinner} has already been chosen as our giveaway winner! We appreciate everyone joining the giveaway! :)`
     )
   }
-  console.log(`${tags['display-name']}: ${message}`)
+  console.log(`${tags['display-name']}: ${message}, ${tags.badges.vip ? true : false}`)
 })
