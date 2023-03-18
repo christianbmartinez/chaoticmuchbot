@@ -395,12 +395,12 @@ runCompletion(message)
 
   function checkForVip() {
    if (checkBadges() === false) {
-    return tags.badges
+    return 'No'
    } else if (checkBadges() === false && tags.badges.vip) {
-     return tags.badges.vip
+     return 'Yes'
    }
   }
 
 
-  console.log(`${tags['display-name']}: ${message}, ${checkForVip()}`)
+  console.log(`${tags['display-name']}: ${message}, Is a VIP? ${checkForVip()}`)
 })
