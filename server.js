@@ -280,7 +280,7 @@ client2.on('message', (channel, tags, message, self) => {
     getPickupLine()
   }
   console.log(tags)
-  if (message.includes('@chaoticmuchbot') && tags.mod || tags.badges.vip || tags.badges.broadcaster) { 
+  if (message.includes('@chaoticmuchbot') && tags.mod || tags.badges.vip ==='1') { 
     async function getResponse() {
       await runCompletion(message)
       client2.say(channel, `@${tags.username}, ${aiResponse}`)
