@@ -393,6 +393,14 @@ runCompletion(message)
     return tags.badges === null || undefined ? true : false
   }
 
+  function checkForVip() {
+   if (checkBadges() === false) {
+    return tags.badges
+   } else if (checkBadges() === false && tags.badges.vip) {
+     return tags.badges.vip
+   }
+  }
 
-  console.log(`${tags['display-name']}: ${message}, Doesn't have badges: ${checkBadges()}`)
+
+  console.log(`${tags['display-name']}: ${message}, ${checkForVip()}`)
 })
