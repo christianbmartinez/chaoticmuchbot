@@ -266,7 +266,6 @@ client2.on('message', (channel, tags, message, self) => {
     client2.say(channel, `@${tags.username}, ${pickupLine}`)
     getPickupLine()
   }
-  console.log(tags)
   if (message.includes('@chaoticmuchbot') && tags.mod) { 
     async function runCompletion(message) {
       const completion = await openai.createCompletion({
