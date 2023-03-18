@@ -394,10 +394,10 @@ runCompletion(message)
   }
 
   function checkForVip() {
-   if (checkBadges() === false) {
-    return 'No'
-   } else if (checkBadges() === false && tags.badges.vip) {
-     return 'Yes'
+   if (checkBadges() === false && tags.badges.vip) {
+    return 'Yes'
+   } else if (checkBadges() === false) {
+     return 'No'
    }
   }
 
