@@ -6,24 +6,11 @@ const { eightBall } = require('./eightBall')
 const { Configuration, OpenAIApi } = require('openai')
 require('dotenv').config()
 
-let aiResponse
-
 const configuration = new Configuration({
   apiKey: process.env.OPEN_AI_SECRET,
 })
 
 const openai = new OpenAIApi(configuration)
-
-async function runCompletion(message) {
-  const completion = await openai.createCompletion({
-    model: 'text-davinci-003',
-    prompt: message,
-    max_tokens: 200,
-  })
-  aiResponse = completion.data.choices[0].text
-}
-
-runCompletion('Hello!')
 
 let tweet
 let tweetId
@@ -281,11 +268,16 @@ client2.on('message', (channel, tags, message, self) => {
   }
   console.log(tags)
   if (message.includes('@chaoticmuchbot') && tags.mod || tags.badges.vip ==='1') { 
-    async function getResponse() {
-      await runCompletion(message)
-      client2.say(channel, `@${tags.username}, ${aiResponse}`)
+    async function runCompletion(message) {
+      const completion = await openai.createCompletion({
+        model: 'text-davinci-003',
+        prompt: message,
+        max_tokens: 200,
+      })
+      client2.say(channel, `@${tags.username}, ${completion.data.choices[0].text}`)
     }
-    getResponse()
+runCompletion(message)
+   
   } 
   if (message.includes('!weather')) {
     client2.say(
