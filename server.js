@@ -389,5 +389,10 @@ runCompletion(message)
     )
   }
 
-  console.log(`${tags['display-name']}: ${message}, Doesn't have badges: ${tags.badges === null || undefined ? true : false}`)
+  function checkBadges() {
+    return tags.badges === null || undefined ? true : false
+  }
+
+
+  console.log(`${tags['display-name']}: ${message}, Doesn't have badges: ${checkBadges()}`)
 })
