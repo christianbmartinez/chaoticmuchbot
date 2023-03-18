@@ -388,8 +388,6 @@ runCompletion(message)
       `@${isWinner} has already been chosen as our giveaway winner! We appreciate everyone joining the giveaway! :)`
     )
   }
-  function checkForBadges() {
-    tags.badges = null ? true : false
-  }
-  console.log(`${tags['display-name']}: ${message}, Doesn't have badges: ${checkForBadges()}`)
+
+  console.log(`${tags['display-name']}: ${message}, Doesn't have badges: ${tags.badges = null ? true : false}`)
 })
