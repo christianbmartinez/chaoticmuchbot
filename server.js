@@ -233,6 +233,20 @@ let isWinner
 client2.on('message', (channel, tags, message, self) => {
   if (self) return
 
+  function checkBadges() {
+    return tags.badges === null || undefined ? true : false
+  }
+
+  function checkForVip() {
+   if (checkBadges() === false && tags.badges.vip) {
+    return true
+   } else if (checkBadges() === false) {
+     return false
+   } else {
+    return false
+   }
+  }
+
   if (
     message.includes('!now') &&
     message !== '!now off' &&
@@ -266,7 +280,7 @@ client2.on('message', (channel, tags, message, self) => {
     client2.say(channel, `@${tags.username}, ${pickupLine}`)
     getPickupLine()
   }
-  if (message.includes('@chaoticmuchbot') && tags.mod) { 
+  if (message.includes('@chaoticmuchbot') && tags.mod || checkForVip() === true) { 
     async function runCompletion(message) {
       const completion = await openai.createCompletion({
         model: 'text-davinci-003',
@@ -388,21 +402,5 @@ runCompletion(message)
       `@${isWinner} has already been chosen as our giveaway winner! We appreciate everyone joining the giveaway! :)`
     )
   }
-
-  function checkBadges() {
-    return tags.badges === null || undefined ? true : false
-  }
-
-  function checkForVip() {
-   if (checkBadges() === false && tags.badges.vip) {
-    return 'Yes'
-   } else if (checkBadges() === false) {
-     return 'No'
-   } else {
-    return 'No'
-   }
-  }
-
-
-  console.log(`${tags['display-name']}: ${message}, Is a VIP? ${checkForVip()}`)
+  console.log(`${tags['display-name']}: ${message}`)
 })
