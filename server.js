@@ -287,7 +287,7 @@ client2.on('message', (channel, tags, message, self) => {
         prompt: message,
         max_tokens: 200,
       })
-      client2.say(channel, `@${tags.username}, ${completions.data.choices[0].text}`)
+      client2.say(channel, `@${tags.username},${completions.data.choices[0].text}`)
     }
 runCompletions(message)
   }
@@ -298,10 +298,9 @@ runCompletions(message)
         prompt: message,
         max_tokens: 200,
       })
-      client2.say(channel, `@${tags.username}, ${completion.data.choices[0].text}`)
+      client2.say(channel, `@${tags.username},${completion.data.choices[0].text}`)
     }
-runCompletion(message)
-   
+runCompletion(message)   
   } 
   if (message.includes('!weather')) {
     client2.say(
