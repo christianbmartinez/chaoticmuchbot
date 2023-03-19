@@ -4,7 +4,8 @@
   "description": "A chat bot for twitch",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon devserver.js"
   },
   "author": "Christian B. Martinez",
   "license": "ISC",
@@ -15,5 +16,8 @@
     "needle": "^3.2.0",
     "openai": "^3.2.1",
     "tmi.js": "^1.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
   }
 }
