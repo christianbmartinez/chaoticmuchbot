@@ -2,7 +2,7 @@ const tmi = require('tmi.js')
 const axios = require('axios')
 const needle = require('needle')
 const { evaluate } = require('decimal-eval')
-const { eightBall } = require('./eightBall')
+const { eightBall } = require('./modules/eightBall')
 const { Configuration, OpenAIApi } = require('openai')
 require('dotenv').config()
 
@@ -140,23 +140,23 @@ async function getPickupLine() {
 }
 getPickupLine()
 
-let videoTitle
-let videoId
-
-async function getLatestVideo() {
-  try {
-    const response = await axios.get(
-      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=UCgjXO8vYQO1_A-9diNrIsAQ&maxResults=1&order=date&key=${process.env.YOUTUBE_API_KEY}`
-    )
-    console.log('Got yt video data')
-    videoTitle = response.data.items[0].snippet.title
-    videoId = response.data.items[0].id.videoId
-
-  } catch (error) {
-    console.error(error)
-  }
-}
-getLatestVideo()
+// let videoTitle
+// let videoId
+// 
+// async function getLatestVideo() {
+//   try {
+//     const response = await axios.get(
+//       `https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=UCgjXO8vYQO1_A-9diNrIsAQ&maxResults=1&order=date&key=${process.env.YOUTUBE_API_KEY}`
+//     )
+//     console.log('Got yt video data')
+//     videoTitle = response.data.items[0].snippet.title
+//     videoId = response.data.items[0].id.videoId
+// 
+//   } catch (error) {
+//     console.error(error)
+//   }
+// }
+// getLatestVideo()
 
 const client = new tmi.Client({
   connection: {
@@ -194,21 +194,6 @@ client.on('message', (channel, tags, message, self) => {
   }
 })
 
-//async function getAlgsScores() {
-//  try {
-//    const response = await axios.get('https://algs.tas.gg/api/match/1276')
-//    nowResponse = response.data
-//    console.log('Got algs scores data')
-//  } catch (error) {
-//    console.error(error)
-//  }
-//}
-//getAlgsScores()
-
-//setInterval(() => {
-//  getAlgsScores()
-//}, 1000 * 60 )
-
 function isMathProblem(str) {
   return /^(\d*\.?\d*)\s?[-+/*]\s?(\d*\.?\d*)$/g.test(str)
 }
@@ -225,8 +210,7 @@ let tourneyIsActive = false
 let isWinner
 
   setInterval(() => {
-    client2.say('#chaoticmuch', `Watch chaotics recent youtube video, ${videoTitle} https://www.youtube.com/watch?v=${videoId}`)
-    getLatestVideo()
+    client2.say('#chaoticmuch', `Subscribe to chaoticmuch on YouTube! https://www.youtube.com/@chaoticmuch4564`)
   }, 1000 * 60 * 60)
 
 

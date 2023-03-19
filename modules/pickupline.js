@@ -13,4 +13,4 @@ async function getPickupLine() {
 }
 getPickupLine()
 
-module.exports = { getPickupLine }
+module.exports = { getPickupLine, pickupLine }
