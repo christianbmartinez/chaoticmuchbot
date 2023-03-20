@@ -1,7 +1,6 @@
 const tmi = require('tmi.js')
 const axios = require('axios')
 const needle = require('needle')
-const { evaluate } = require('decimal-eval')
 const { eightBall } = require('./modules/eightBall')
 const { Configuration, OpenAIApi } = require('openai')
 require('dotenv').config()
@@ -194,16 +193,6 @@ client.on('message', (channel, tags, message, self) => {
   }
 })
 
-function isMathProblem(str) {
-  return /^(\d*\.?\d*)\s?[-+/*]\s?(\d*\.?\d*)$/g.test(str)
-}
-
-let math
-
-function performMath(str) {
-  math = evaluate(str)
-}
-
 let entries = {}
 let giveawayIsActive = false
 let tourneyIsActive = false
@@ -304,11 +293,6 @@ runCompletion(message)
 
   if (message.includes('^')) {
     client2.say(channel, '^^^')
-  }
-
-  if (isMathProblem(message)) {
-    performMath(message)
-    client2.say(channel, `@${tags.username}, The answer is ${math}`)
   }
 
   if (message.includes('!latesttweet')) {

@@ -18,9 +18,9 @@ console.log('Listening for messages..')
 
 chatClient.on('message', (channel, tags, message, self) => {
   if (self) return
-  if (message.includes('!test')) {
-    chatClient.say(channel, 'This is a test.')
-    chatClient.ban(channel, tags['display-name'], 'Banned by chatbot' )
+
+  if (message.includes('!hello')) {
+    chatClient.say(channel, `${tags.username}, hello from chatbot!`)
   }
 
   console.log(`${tags['display-name']}: ${message}`)
