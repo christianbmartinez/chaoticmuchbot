@@ -253,7 +253,7 @@ client2.on('message', (channel, tags, message, self) => {
     client2.say(channel, `@${tags.username}, ${pickupLine}`)
     getPickupLine()
   }
-  if (message.includes('@chaoticmuchbot')) {
+  if (message.includes('@chaoticmuchbot') && tags.mod === false) {
     client2.say(
       channel,
       `@${tags.username}, I am programmed to respond to vips and mods only.`
