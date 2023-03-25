@@ -275,6 +275,11 @@ runCompletions(message)
     }
 runCompletion(message)   
   } 
+  if (message.includes('@chaoticmuchbot') && !tags.mod || checkForVip() === false) {
+    client2.say(
+      channel,
+      `@${tags.username}, I am programmed to respond to vips and mods only.`
+    )}
   if (message.includes('!weather')) {
     client2.say(
       channel,

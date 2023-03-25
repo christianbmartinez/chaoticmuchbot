@@ -148,28 +148,25 @@ async function getCelcius() {
 
 getCelcius()
 
-//axios.post('https://id.twitch.tv/oauth2/token', {
-//    client_id: process.env.TWITCH_BOT_CLIENT_ID,
-//    client_secret: process.env.TWITCH_BOT_CLIENT_SECRET,
-//    grant_type: 'client_credentials'
-//})
+let broadcasterId = '635449574'
+let creakyId = '785076339'
+let userId = '847510670'
+
+//axios.get('https://api.twitch.tv/helix/search/channels?query=creakymuch', {
+//    headers: {
+//      'Client-Id': 'gp762nuuoqcoxypju8c569th9wz7q5',
+//      'Authorization': 'Bearer cz50mz1oothr4rvtqhv9t85btweagd',
+//}})
 //.then(function (response) {
-//  accessToken = response.data.access_token
+//  console.log(response.data.data)
 //})
 //.catch(error => console.log(error))
 
-//const broadcasterId = '4272608'
-//const moderatorId = ''
-//
-//axios.get('https://api.twitch.tv/helix/search/channels?query=creakymuch', {
-//    headers: {
-//      'Client-Id': process.env.TWITCH_BOT_CLIENT_ID,
-//      'Authorization': 'Bearer ' + process.env.TWITCH_ACCESS_TOKEN,
-//}})
-//.then(function (response) {
-//  console.log(response.data.data[0])
-//})
-//.catch(error => console.log(error))
+  axios.post('https://api.twitch.tv/helix/chat/announcements?broadcaster_id=635449574&moderator_id=847510670', {headers:{
+    'Authorization' : 'Bearer 5jupoh87hr15ifnh4uglqaj05hzhu1',
+    'Client-Id': 'gp762nuuoqcoxypju8c569th9wz7q5',
+    'Content-Type': 'application/json'
+  }}).then((data) => console.log(data.data)).catch(err => console.error(err))
 
 
 //  axios.post('https://api.twitch.tv/helix/chat/announcements', {headers:{
@@ -196,17 +193,17 @@ getCelcius()
 // GO HERE https://id.twitch.tv/oauth2/authorize?client_id=5vyq1nsaib8c8qgayi0jvulq13wy9y&redirect_uri=https://localhost&response_type=code&scope=channel:moderate+chat:edit+chat:read+moderator:manage:announcements+moderator:manage:banned_users+moderator:manage:chat_messages+whispers:read+whispers:edit
 // GET THE CODE FROM URL THEN PASTE BELOW
 
-  axios.post('https://id.twitch.tv/oauth2/token' +
-  '?client_id=' + process.env.TWITCH_BOT_CLIENT_ID + 
-  '&code=o8z2tq9cpytdug0j73xgt0l829v6dk' +
-  '&client_secret=' + process.env.TWITCH_BOT_CLIENT_SECRET + 
-  '&grant_type=authorization_code' +
-  '&redirect_uri=https://localhost'
-  )
-  .then(data => {
-    console.log(data)
-  })
-  .catch(error => console.error(error))
+  //axios.post('https://id.twitch.tv/oauth2/token' +
+  //'?client_id=' + process.env.TWITCH_BOT_CLIENT_ID + 
+  //'&code=0ordii6si2prt2bajw8wymvll2i07o' +
+  //'&client_secret=' + process.env.TWITCH_BOT_CLIENT_SECRET + 
+  //'&grant_type=authorization_code' +
+  //'&redirect_uri=https://localhost'
+  //)
+  //.then(data => {
+  //  console.log(data)
+  //})
+  //.catch(error => console.error(error))
 
 const regExpCommand = new RegExp(/^!([a-zA-Z0-9]+)(?:\W+)?(.*)?/)
 
