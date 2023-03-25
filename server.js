@@ -258,7 +258,7 @@ client2.on('message', (channel, tags, message, self) => {
       channel,
       `@${tags.username}, I am programmed to respond to vips and mods only.`
     )}
-  if (message.includes('@chaoticmuchbot') && checkForVip() === true) {
+  if (message.includes('@chaoticmuchbot') && checkForVip() === true || tags.username == 'teeiniowa') {
     async function runCompletions(message) {
       const completions = await openai.createCompletion({
         model: 'text-davinci-003',
