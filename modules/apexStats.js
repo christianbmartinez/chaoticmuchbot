@@ -51,14 +51,16 @@ async function getApexStats() {
     }`
     console.log('Got apex data:', response.data.global.rank.rankName,response.data.global.rank.rankScore, response.data.global.rank.ladderPosPlatform,
     response.data.legends.selected.LegendName, response.data.legends.selected.data[0].value, response.data.legends.selected.gameInfo.skin, 
-    response.data.legends.selected.gameInfo.pose, response.data.legends.selected.gameInfo.frame  )
+    response.data.legends.selected.gameInfo.pose, response.data.legends.selected.gameInfo.frame)
   } catch (error) {
     console.error(error)
   }
 }
+
 getApexStats()
+
 setInterval(() => {
   getApexStats()
 }, 1000 * 60 )
 
-module.exports = { getApexStats, apexStats : apexStats }
+module.exports = { getApexStats }
