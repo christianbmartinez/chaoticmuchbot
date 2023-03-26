@@ -17,7 +17,7 @@ async function getLatestTweet() {
   const twittertoken = process.env.TWITTER_BEARER_TOKEN
   const endpointUrl = 'https://api.twitter.com/2/tweets/search/recent'
   const params = {
-    query: 'from:chaoticmuch -is:retweet',
+    query: 'from:chaoticmuchbot -is:retweet',
     'tweet.fields': 'author_id',
   }
   const res = await needle('get', endpointUrl, params, {
@@ -303,7 +303,7 @@ runCompletion(message)
   if (message.includes('!latesttweet')) {
     client2.say(
       channel,
-      `@${tags.username}, chaotics latest tweet was "${tweet}" https://twitter.com/chaoticmuch/status/${tweetId}`
+      `@${tags.username}, my latest tweet was "${tweet}" https://twitter.com/chaoticmuchbot/status/${tweetId}`
     )
     getLatestTweet()
   }
