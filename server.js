@@ -48,44 +48,44 @@ getLatestTweet()
 //      response.data.global.rank.rankName
 //        ? response.data.global.rank.rankName
 //        : undefined
-//    }, 
+//    },
 //    RP: ${
 //      response.data.global.rank.rankScore
 //        ? response.data.global.rank.rankScore
 //        : undefined
-//    }, 
+//    },
 //    Position:# ${
 //      response.data.global.rank.ladderPosPlatform
 //        ? response.data.global.rank.ladderPosPlatform
 //        : undefined
-//    }, 
+//    },
 //    Legend: ${
 //      response.data.legends.selected.LegendName
 //        ? response.data.legends.selected.LegendName
 //        : undefined
-//    }, 
+//    },
 //    Legend Kills: ${
 //      response.data.legends.selected.data[0].value
 //        ? response.data.legends.selected.data[0].value
 //        : undefined
-//    }, 
+//    },
 //    Skin: ${
 //      response.data.legends.selected.gameInfo.skin
 //        ? response.data.legends.selected.gameInfo.skin
 //        : undefined
-//    }, 
+//    },
 //    Pose: ${
 //      response.data.legends.selected.gameInfo.pose
 //        ? response.data.legends.selected.gameInfo.pose
 //        : undefined
-//    }, 
+//    },
 //    Frame: ${
 //      response.data.legends.selected.gameInfo.frame
 //        ? response.data.legends.selected.gameInfo.frame
 //        : undefined
 //    }`
 //    console.log('Got apex data:', response.data.global.rank.rankName,response.data.global.rank.rankScore, response.data.global.rank.ladderPosPlatform,
-//    response.data.legends.selected.LegendName, response.data.legends.selected.data[0].value, response.data.legends.selected.gameInfo.skin, 
+//    response.data.legends.selected.LegendName, response.data.legends.selected.data[0].value, response.data.legends.selected.gameInfo.skin,
 //    response.data.legends.selected.gameInfo.pose, response.data.legends.selected.gameInfo.frame  )
 //  } catch (error) {
 //    console.error(error)
@@ -126,22 +126,9 @@ async function getCelcius() {
 }
 getCelcius()
 
-let pickupLine
-
-async function getPickupLine() {
-  try {
-    const response = await axios.get('https://pickupline-api.herokuapp.com/')
-    pickupLine = response.data.pickup_line
-    console.log('Got pickup line data')
-  } catch (error) {
-    console.error(error)
-  }
-}
-getPickupLine()
-
 // let videoTitle
 // let videoId
-// 
+//
 // async function getLatestVideo() {
 //   try {
 //     const response = await axios.get(
@@ -150,7 +137,7 @@ getPickupLine()
 //     console.log('Got yt video data')
 //     videoTitle = response.data.items[0].snippet.title
 //     videoId = response.data.items[0].id.videoId
-// 
+//
 //   } catch (error) {
 //     console.error(error)
 //   }
@@ -198,10 +185,12 @@ let giveawayIsActive = false
 let tourneyIsActive = false
 let isWinner
 
-  setInterval(() => {
-    client2.say('#chaoticmuch', `Subscribe to chaoticmuch on YouTube! https://www.youtube.com/@chaoticmuch4564`)
-  }, 1000 * 60 * 60)
-
+setInterval(() => {
+  client2.say(
+    '#chaoticmuch',
+    `Subscribe to chaoticmuch on YouTube! https://www.youtube.com/@chaoticmuch4564`
+  )
+}, 1000 * 60 * 60)
 
 client2.on('message', (channel, tags, message, self) => {
   if (self) return
@@ -211,13 +200,13 @@ client2.on('message', (channel, tags, message, self) => {
   }
 
   function checkForVip() {
-   if (checkBadges() === false && tags.badges.vip) {
-    return true
-   } else if (checkBadges() === false) {
-     return false
-   } else {
-    return false
-   }
+    if (checkBadges() === false && tags.badges.vip) {
+      return true
+    } else if (checkBadges() === false) {
+      return false
+    } else {
+      return false
+    }
   }
 
   if (
@@ -253,33 +242,44 @@ client2.on('message', (channel, tags, message, self) => {
     client2.say(channel, `@${tags.username}, ${pickupLine}`)
     getPickupLine()
   }
-  if (message.includes('@chaoticmuchbot') && tags.mod === false && checkForVip() === false) {
+  if (
+    message.includes('@chaoticmuchbot') &&
+    tags.mod === false &&
+    checkForVip() === false
+  ) {
     client2.say(
       channel,
       `@${tags.username}, I am programmed to respond to vips and mods only.`
-    )}
+    )
+  }
   if (message.includes('@chaoticmuchbot') && checkForVip() === true) {
     async function runCompletions(message) {
       const completions = await openai.createCompletion({
         model: 'text-davinci-003',
-        prompt: message,
+        prompt: `You are a moderator chatbot on Twitch for professional apex legends player chaoticmuch. Respond to this prompt: ${message}`,
         max_tokens: 200,
       })
-      client2.say(channel, `@${tags.username},${completions.data.choices[0].text}`)
+      client2.say(
+        channel,
+        `@${tags.username},${completions.data.choices[0].text}`
+      )
     }
-runCompletions(message)
+    runCompletions(message)
   }
-  if (message.includes('@chaoticmuchbot') && tags.mod) { 
+  if (message.includes('@chaoticmuchbot') && tags.mod) {
     async function runCompletion(message) {
       const completion = await openai.createCompletion({
         model: 'text-davinci-003',
-        prompt: message,
+        prompt: `You are a moderator chatbot on Twitch for professional apex legends player chaoticmuch. Respond to this prompt: ${message}`,
         max_tokens: 200,
       })
-      client2.say(channel, `@${tags.username},${completion.data.choices[0].text}`)
+      client2.say(
+        channel,
+        `@${tags.username},${completion.data.choices[0].text}`
+      )
     }
-runCompletion(message)   
-  } 
+    runCompletion(message)
+  }
   if (message.includes('!weather')) {
     client2.say(
       channel,
@@ -292,7 +292,7 @@ runCompletion(message)
   if (message.includes('!help')) {
     client2.say(
       channel,
-      `@${tags.username}, streamelements commands: https://streamelements.com/chaoticmuch-7861/commands chaoticmuchbot commands: !weather !latesttweet !pickupline !8ball [question]`
+      `@${tags.username}, streamelements commands: https://streamelements.com/chaoticmuch-7861/commands chaoticmuchbot commands: !weather !latesttweet !8ball [question]`
     )
   }
 
