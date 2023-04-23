@@ -238,10 +238,6 @@ client2.on('message', (channel, tags, message, self) => {
   //  getApexStats()
   //}
 
-  if (message.includes('!pickupline')) {
-    client2.say(channel, `@${tags.username}, ${pickupLine}`)
-    getPickupLine()
-  }
   if (
     message.includes('@chaoticmuchbot') &&
     tags.mod === false &&
