@@ -245,7 +245,7 @@ client2.on('message', (channel, tags, message, self) => {
   ) {
     client2.say(
       channel,
-      `@${tags.username}, I am programmed to respond to vips and mods only.`
+      `@${tags.username}, I am programmed to respond to vips and mods only, sorry! :(`
     )
   }
   if (message.includes('@chaoticmuchbot') && checkForVip() === true) {
