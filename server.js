@@ -3,7 +3,6 @@ const axios = require('axios')
 const needle = require('needle')
 const { eightBall } = require('./modules/eightBall')
 const { Configuration, OpenAIApi } = require('openai')
-const art = require('ascii-art')
 require('dotenv').config()
 
 const configuration = new Configuration({
