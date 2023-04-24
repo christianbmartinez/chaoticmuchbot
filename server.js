@@ -193,18 +193,6 @@ setInterval(() => {
   )
 }, 1000 * 60 * 60)
 
-function e8art(params) {
-  art.font(params, 'doom', (err, rendered) => {
-    if (err) {
-      console.log(err)
-      console.log('Function called with params', params)
-    } else {
-      console.log(rendered)
-      return rendered
-    }
-  })
-}
-
 client2.on('message', (channel, tags, message, self) => {
   if (self) return
 
@@ -269,9 +257,7 @@ client2.on('message', (channel, tags, message, self) => {
         You were programmed by @creakymuch.
         You are from Salt Lake City Utah, and that's where you were built.
         You were built with node.js, tmi.js, axios, needle, and chat gpt.
-        If someone from the chat asks you to create acsii art, respond with the following function, and replace the 'test' string with the text they want to generate:
-        ${e8art('test')} 
-        Otherwise, respond to this prompt: ${message}`,
+        Respond to this prompt: ${message}`,
         max_tokens: 200,
       })
       client2.say(
@@ -289,9 +275,7 @@ client2.on('message', (channel, tags, message, self) => {
         You were programmed by @creakymuch.
         You are from Salt Lake City Utah, and that's where you were built.
         You were built with node.js, tmi.js, axios, needle, and chat gpt.
-        If someone from the chat asks you to create acsii art, respond with the following function, and replace the 'test' string with the text they want to generate:
-        ${e8art('test')} 
-        Otherwise, respond to this prompt: ${message}`,
+        Respond to this prompt: ${message}`,
         max_tokens: 200,
       })
       client2.say(
