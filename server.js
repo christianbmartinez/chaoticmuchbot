@@ -194,7 +194,8 @@ setInterval(() => {
 }, 1000 * 60 * 60)
 
 function e8art(params) {
-  art.font(params, 'Doom', (err, rendered) => {
+  console.log('Function called with params', params)
+  art.font(params, 'doom', (err, rendered) => {
     if (err) {
       console.log(err)
     } else {
@@ -264,7 +265,9 @@ client2.on('message', (channel, tags, message, self) => {
     async function runCompletions(message) {
       const completions = await openai.createCompletion({
         model: 'text-davinci-003',
-        prompt: `You are a moderator chatbot on Twitch for professional apex legends player chaoticmuch. If someone from chat asks you to create acsii art, respond with the users request using this function, passing in the type of art as an argument:${e8art()} Otherwise, respond to the prompts accordingly: ${message}`,
+        prompt: `You are a moderator chatbot on Twitch for professional apex legends player chaoticmuch. If someone from chat asks you to create acsii art, respond with the users request using this function, passing in the type of art as an argument:${e8art(
+          arttype
+        )} Otherwise, respond to the prompts accordingly: ${message}`,
         max_tokens: 200,
       })
       client2.say(
@@ -278,7 +281,9 @@ client2.on('message', (channel, tags, message, self) => {
     async function runCompletion(message) {
       const completion = await openai.createCompletion({
         model: 'text-davinci-003',
-        prompt: `You are a moderator chatbot on Twitch for professional apex legends player chaoticmuch. If someone from chat asks you to create acsii art, respond with the users request using this function, passing in the type of art as an argument:${e8art()} Otherwise, respond to the prompts accordingly: ${message}`,
+        prompt: `You are a moderator chatbot on Twitch for professional apex legends player chaoticmuch. If someone from chat asks you to create acsii art, respond with the users request using this function, passing in the type of art as an argument:${e8art(
+          arttype
+        )} Otherwise, respond to the prompts accordingly: ${message}`,
         max_tokens: 200,
       })
       client2.say(
