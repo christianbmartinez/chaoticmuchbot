@@ -194,7 +194,7 @@ setInterval(() => {
 }, 1000 * 60 * 60)
 
 function e8art(params) {
-  art.font(params, 'doom', (err, rendered) => {
+  art.font(params, 'Doom', (err, rendered) => {
     if (err) {
       console.log(err)
     } else {
