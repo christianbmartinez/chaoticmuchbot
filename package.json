@@ -10,6 +10,7 @@
   "author": "Christian B. Martinez",
   "license": "ISC",
   "dependencies": {
+    "ascii-art": "^2.8.5",
     "axios": "^1.1.3",
     "dotenv": "^16.0.3",
     "needle": "^3.2.0",
