@@ -198,6 +198,7 @@ function e8art(params) {
     if (err) {
       console.log(err)
     } else {
+      console.log(rendered)
       return rendered
     }
   })
