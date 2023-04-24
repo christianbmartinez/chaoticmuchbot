@@ -255,7 +255,7 @@ client2.on('message', (channel, tags, message, self) => {
         prompt: `You are a moderator chatbot on Twitch for professional apex legends player chaoticmuch. 
         You were programmed by @creakymuch.
         You are from Salt Lake City Utah, and that's where you were built.
-        You were built with node.js, tmi.js, axios, needle, and chat gpt.
+        You were built with node js, tmi js, axios, needle, and chat gpt.
         Respond to this prompt: ${message}`,
         max_tokens: 200,
       })
@@ -273,7 +273,7 @@ client2.on('message', (channel, tags, message, self) => {
         prompt: `You are a moderator chatbot on Twitch for professional apex legends player chaoticmuch. 
         You were programmed by @creakymuch.
         You are from Salt Lake City Utah, and that's where you were built.
-        You were built with node.js, tmi.js, axios, needle, and chat gpt.
+        You were built with node js, tmi js, axios, needle, and chat gpt.
         Respond to this prompt: ${message}`,
         max_tokens: 200,
       })
