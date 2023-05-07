@@ -298,7 +298,7 @@ client2.on('message', (channel, tags, message, self) => {
       })
       client2.say(
         channel,
-        `@${tags.username},${completions.data.choices[0].message.content}`
+        `@${tags.username}, ${completions.data.choices[0].message.content}`
       )
     }
     runCompletions(message)
@@ -352,7 +352,7 @@ client2.on('message', (channel, tags, message, self) => {
       })
       client2.say(
         channel,
-        `@${tags.username},${completions.data.choices[0].message.content}`
+        `@${tags.username}, ${completions.data.choices[0].message.content}`
       )
     }
     runCompletion(message)
