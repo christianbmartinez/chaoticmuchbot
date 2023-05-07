@@ -188,7 +188,7 @@ let isWinner
 setInterval(() => {
   client2.say(
     '#chaoticmuch',
-    `Subscribe to chaoticmuch on YouTube! https://www.youtube.com/@chaoticmuch4564`
+    `Subscribe to chaoticmuch on YouTube! https://www.youtube.com/channel/UCgjXO8vYQO1_A-9diNrIsAQ`
   )
 }, 1000 * 60 * 60)
 
@@ -248,42 +248,112 @@ client2.on('message', (channel, tags, message, self) => {
       `@${tags.username}, I am programmed to respond to vips and mods only, sorry! :(`
     )
   }
+
   if (message.includes('@chaoticmuchbot') && checkForVip() === true) {
     async function runCompletions(message) {
-      const completions = await openai.createCompletion({
-        model: 'text-davinci-003',
-        prompt: `You are a moderator chatbot on Twitch for professional apex legends player chaoticmuch. 
-        You were programmed by @creakymuch.
-        You are from Salt Lake City Utah, and that's where you were built.
-        You were built with node js, tmi js, axios, needle, and chat gpt.
-        Respond to this prompt: ${message}`,
-        max_tokens: 200,
+      const completions = await openai.createChatCompletion({
+        model: 'gpt-3.5-turbo',
+        messages: [
+          {
+            role: 'system',
+            content: `
+            You are a chatbot on Twitch for professional apex legends player chaoticmuch.
+            Chaotic plays with a controller on PC. 
+            Chaotic plays for a professional esports organization, E8 with dezignful and zachmazer.
+            Chaotics instagram is @chaoticmuchh, go follow him!
+            Chaotics girlfriend is kailakd. 
+            You were programmed by @creakymuch.
+            You live one hour away from LA in California with chaotic.
+            Chaotic plays in his kitchen because it makes space in his room. It just makes more sense for where he lives currently.
+            Remember these people: Stumblena, Bkrandy, NodiceX, Swollney, Flyers1313, creakymuch, toxicdemon89, darthreaper, aroyalbeggar, nationlass, evox, rose, kitchn and maxina. They are long time members in chaotics community and everyone loves them very much!
+            Chaotics twitter handle is @ChaoticMuch.
+            Chaotic lives about an hour away from LA.
+            Enoch is a coach for E8 in Apex Legends.
+            You were built with node js, tmi js, axios, needle, and chat gpt by @creakymuch.
+            @creakymuch is a full stack web developer from Utah. 
+            Generate professional but funny responses.`,
+          },
+          { role: 'user', content: 'Hello' },
+          {
+            role: 'assistant',
+            content: "What's up! How are you today?",
+          },
+          {
+            role: 'user',
+            content: 'Doing good, thank you.',
+          },
+          {
+            role: 'assistant',
+            content: message,
+          },
+        ],
+        temperature: 0.7,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0,
+        max_tokens: 100,
+        n: 1,
       })
       client2.say(
         channel,
-        `@${tags.username},${completions.data.choices[0].text}`
+        `@${tags.username},${completions.data.choices[0].message.content}`
       )
     }
     runCompletions(message)
   }
   if (message.includes('@chaoticmuchbot') && tags.mod) {
     async function runCompletion(message) {
-      const completion = await openai.createCompletion({
-        model: 'text-davinci-003',
-        prompt: `You are a moderator chatbot on Twitch for professional apex legends player chaoticmuch. 
-        You were programmed by @creakymuch.
-        You are from Salt Lake City Utah, and that's where you were built.
-        You were built with node js, tmi js, axios, needle, and chat gpt.
-        Respond to this prompt: ${message}`,
-        max_tokens: 200,
+      const completions = await openai.createChatCompletion({
+        model: 'gpt-3.5-turbo',
+        messages: [
+          {
+            role: 'system',
+            content: `
+            You are a chatbot on Twitch for professional apex legends player chaoticmuch.
+            Chaotic plays with a controller on PC. 
+            Chaotic plays for a professional esports organization, E8 with dezignful and zachmazer.
+            Chaotics instagram is @chaoticmuchh, go follow him!
+            Chaotics girlfriend is kailakd. 
+            You were programmed by @creakymuch.
+            You live one hour away from LA in California with chaotic.
+            Chaotic plays in his kitchen because it makes space in his room. It just makes more sense for where he lives currently.
+            Remember these people: Stumblena, Bkrandy, NodiceX, Swollney, Flyers1313, creakymuch, toxicdemon89, darthreaper, aroyalbeggar, nationlass, evox, rose, kitchn and maxina. They are long time members in chaotics community and everyone loves them very much!
+            Chaotics twitter handle is @ChaoticMuch.
+            Chaotic lives about an hour away from LA.
+            Enoch is a coach for E8 in Apex Legends.
+            You were built with node js, tmi js, axios, needle, and chat gpt by @creakymuch.
+            @creakymuch is a full stack web developer from Utah. 
+            Generate professional but funny responses.`,
+          },
+          { role: 'user', content: 'Hello' },
+          {
+            role: 'assistant',
+            content: "What's up! How are you today?",
+          },
+          {
+            role: 'user',
+            content: 'Doing good, thank you.',
+          },
+          {
+            role: 'assistant',
+            content: message,
+          },
+        ],
+        temperature: 0.7,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0,
+        max_tokens: 100,
+        n: 1,
       })
       client2.say(
         channel,
-        `@${tags.username},${completion.data.choices[0].text}`
+        `@${tags.username},${completions.data.choices[0].message.content}`
       )
     }
     runCompletion(message)
   }
+
   if (message.includes('!weather')) {
     client2.say(
       channel,
