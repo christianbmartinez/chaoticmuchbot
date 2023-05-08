@@ -245,7 +245,7 @@ client2.on('message', (channel, tags, message, self) => {
   ) {
     client2.say(
       channel,
-      `@${tags.username}, I am programmed to respond to vips and mods only, sorry! :(`
+      `@${tags.username}, I am programmed to answer questions for vips and mods only, sorry! :(`
     )
   }
 
@@ -267,7 +267,8 @@ client2.on('message', (channel, tags, message, self) => {
             You were programmed by @creakymuch.
             You live one hour away from LA in California with chaotic.
             Chaotic plays in his kitchen because it makes space in his room. It just makes more sense for where he lives currently.
-            Remember these people: Stumblena, Bkrandy, NodiceX, Swollney, Flyers1313, creakymuch, toxicdemon89, darthreaper, aroyalbeggar, nationlass, evox, rose, kitchn and maxina. They are long time members in chaotics community and everyone loves them very much!
+            Remember these people: Stumblena, Bkrandy, NodiceX, Swollney, Flyers1313, creakymuch, toxicdemon89, darthreaper, aroyalbeggar, nationlass, evox, rose, kitchn and maxinaa. They are long time members in chaotics community and everyone loves them very much!
+            Stumblena, creakymuch, nationlass, NodiceX, toxicdemon89, aroyalbeggar, evox, and maxinaa are moderators in chaotics twitch channel.
             Chaotics twitter handle is @ChaoticMuch.
             Chaotic lives about an hour away from LA.
             Enoch is a coach for E8 in Apex Legends.
@@ -278,15 +279,24 @@ client2.on('message', (channel, tags, message, self) => {
           { role: 'user', content: 'Hello' },
           {
             role: 'assistant',
-            content: "What's up! How are you today?",
+            content: 'Hey there! How are you doing today?',
           },
           {
             role: 'user',
-            content: 'Doing good, thank you.',
+            content: 'Doing good, thank you!',
           },
           {
             role: 'assistant',
-            content: message,
+            content: 'Have any questions for me?',
+          },
+          {
+            role: 'user',
+            content: 'What are you?',
+          },
+          {
+            role: 'assistant',
+            content:
+              'I am an AI chatbot designed to make chaotics twitch chat fun and exciting! I am powered by chatgpt, programmed by @creakymuch.',
           },
         ],
         temperature: 0.7,
@@ -321,7 +331,8 @@ client2.on('message', (channel, tags, message, self) => {
             You were programmed by @creakymuch.
             You live one hour away from LA in California with chaotic.
             Chaotic plays in his kitchen because it makes space in his room. It just makes more sense for where he lives currently.
-            Remember these people: Stumblena, Bkrandy, NodiceX, Swollney, Flyers1313, creakymuch, toxicdemon89, darthreaper, aroyalbeggar, nationlass, evox, rose, kitchn and maxina. They are long time members in chaotics community and everyone loves them very much!
+            Remember these people: Stumblena, Bkrandy, NodiceX, Swollney, Flyers1313, creakymuch, toxicdemon89, darthreaper, aroyalbeggar, nationlass, evox, rose, kitchn and maxinaa. They are long time members in chaotics community and everyone loves them very much!
+            Stumblena, creakymuch, nationlass, NodiceX, toxicdemon89, aroyalbeggar, evox, and maxinaa are moderators in chaotics twitch channel.
             Chaotics twitter handle is @ChaoticMuch.
             Chaotic lives about an hour away from LA.
             Enoch is a coach for E8 in Apex Legends.
@@ -332,15 +343,24 @@ client2.on('message', (channel, tags, message, self) => {
           { role: 'user', content: 'Hello' },
           {
             role: 'assistant',
-            content: "What's up! How are you today?",
+            content: 'Hey there! How are you doing today?',
           },
           {
             role: 'user',
-            content: 'Doing good, thank you.',
+            content: 'Doing good, thank you!',
           },
           {
             role: 'assistant',
-            content: message,
+            content: 'Have any questions for me?',
+          },
+          {
+            role: 'user',
+            content: 'What are you?',
+          },
+          {
+            role: 'assistant',
+            content:
+              'I am an AI chatbot designed to make chaotics twitch chat fun and exciting! I am powered by chatgpt, programmed by @creakymuch.',
           },
         ],
         temperature: 0.7,
