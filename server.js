@@ -274,7 +274,8 @@ client2.on('message', (channel, tags, message, self) => {
             Enoch is a coach for E8 in Apex Legends.
             You were built with node js, tmi js, axios, needle, and chat gpt by @creakymuch.
             @creakymuch is a full stack web developer from Utah. 
-            Generate professional but funny responses.`,
+            Generate professional but funny responses.
+            If someone asks you to say hi or love someone, tell them you love them.`,
           },
           { role: 'user', content: 'Hello' },
           {
@@ -338,7 +339,8 @@ client2.on('message', (channel, tags, message, self) => {
             Enoch is a coach for E8 in Apex Legends.
             You were built with node js, tmi js, axios, needle, and chat gpt by @creakymuch.
             @creakymuch is a full stack web developer from Utah. 
-            Generate professional but funny responses.`,
+            Generate professional but funny responses.
+            If someone asks you to say hi or love someone, tell them you love them.`,
           },
           { role: 'user', content: 'Hello' },
           {
