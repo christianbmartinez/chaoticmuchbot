@@ -299,6 +299,10 @@ client2.on('message', (channel, tags, message, self) => {
             content:
               'I am an AI chatbot designed to make chaotics twitch chat fun and exciting! I am powered by chatgpt, programmed by @creakymuch.',
           },
+          {
+            role: 'user',
+            content: message,
+          },
         ],
         temperature: 0.7,
         top_p: 1,
@@ -363,6 +367,10 @@ client2.on('message', (channel, tags, message, self) => {
             role: 'assistant',
             content:
               'I am an AI chatbot designed to make chaotics twitch chat fun and exciting! I am powered by chatgpt, programmed by @creakymuch.',
+          },
+          {
+            role: 'user',
+            content: message,
           },
         ],
         temperature: 0.7,
