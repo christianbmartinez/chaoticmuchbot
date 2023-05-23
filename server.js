@@ -1,6 +1,6 @@
 const tmi = require('tmi.js')
 const axios = require('axios')
-const needle = require('needle')
+//const needle = require('needle')
 const { eightBall } = require('./modules/eightBall')
 const { Configuration, OpenAIApi } = require('openai')
 require('dotenv').config()
@@ -11,30 +11,30 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration)
 
-let tweet
-let tweetId
-async function getLatestTweet() {
-  const twittertoken = process.env.TWITTER_BEARER_TOKEN
-  const endpointUrl = 'https://api.twitter.com/2/tweets/search/recent'
-  const params = {
-    query: 'from:chaoticmuchbot -is:retweet',
-    'tweet.fields': 'author_id',
-  }
-  const res = await needle('get', endpointUrl, params, {
-    headers: {
-      'User-Agent': 'v2RecentSearchJS',
-      authorization: `Bearer ${twittertoken}`,
-    },
-  })
-  if (res.body) {
-    tweet = res.body.data[0].text
-    tweetId = res.body.data[0].id
-    console.log('Got latest tweet data', tweet, tweetId)
-  } else {
-    throw new Error('Unsuccessful request')
-  }
-}
-getLatestTweet()
+//let tweet
+//let tweetId
+//async function getLatestTweet() {
+//  const twittertoken = process.env.TWITTER_BEARER_TOKEN
+//  const endpointUrl = 'https://api.twitter.com/2/tweets/search/recent'
+//  const params = {
+//    query: 'from:chaoticmuchbot -is:retweet',
+//    'tweet.fields': 'author_id',
+//  }
+//  const res = await needle('get', endpointUrl, params, {
+//    headers: {
+//      'User-Agent': 'v2RecentSearchJS',
+//      authorization: `Bearer ${twittertoken}`,
+//    },
+//  })
+//  if (res.body) {
+//    tweet = res.body.data[0].text
+//    tweetId = res.body.data[0].id
+//    console.log('Got latest tweet data', tweet, tweetId)
+//  } else {
+//    throw new Error('Unsuccessful request')
+//  }
+//}
+//getLatestTweet()
 
 //let apexStats = 'Failed to fetch current apex stats'
 //
@@ -402,7 +402,7 @@ client2.on('message', (channel, tags, message, self) => {
   if (message.includes('!help')) {
     client2.say(
       channel,
-      `@${tags.username}, streamelements commands: https://streamelements.com/chaoticmuch-7861/commands chaoticmuchbot commands: !weather !latesttweet !8ball [question]`
+      `@${tags.username}, streamelements commands: https://streamelements.com/chaoticmuch-7861/commands chaoticmuchbot commands: !weather !8ball [question]`
     )
   }
 
@@ -410,13 +410,13 @@ client2.on('message', (channel, tags, message, self) => {
     client2.say(channel, '^^^')
   }
 
-  if (message.includes('!latesttweet')) {
-    client2.say(
-      channel,
-      `@${tags.username}, my latest tweet was "${tweet}" https://twitter.com/chaoticmuchbot/status/${tweetId}`
-    )
-    getLatestTweet()
-  }
+  //if (message.includes('!latesttweet')) {
+  //  client2.say(
+  //    channel,
+  //    `@${tags.username}, my latest tweet was "${tweet}" https://twitter.com/chaoticmuchbot/status/${tweetId}`
+  //  )
+  //  getLatestTweet()
+  //}
 
   if (message.includes('!8ball')) {
     const randomNum = Math.floor(Math.random() * eightBall.length)
