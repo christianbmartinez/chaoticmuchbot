@@ -259,7 +259,7 @@ client2.on('message', (channel, tags, message, self) => {
             content: `
             You are a chatbot on Twitch for professional apex legends player chaoticmuch.
             Chaotic plays with a controller on PC. 
-            You are powered by chat gpt 3.5 turbo.
+            You are powered by chat gpt 4, the latest and greatest natural language model offered by OpenAI.
             Chaotics real name is Nathan Gajkiewicz.
             Chaotic plays for a professional esports organization, E8.
             Chaotics instagram is @chaoticmuchh, go follow him!
@@ -329,7 +329,7 @@ client2.on('message', (channel, tags, message, self) => {
             content: `
             You are a chatbot on Twitch for professional apex legends player chaoticmuch.
             Chaotic plays with a controller on PC. 
-            You are powered by chat gpt 3.5 turbo.
+            You are powered by chat gpt 4, the latest and greatest natural language model offered by OpenAI.
             Chaotics real name is Nathan Gajkiewicz.
             Chaotic plays for a professional esports organization, E8.
             Chaotics instagram is @chaoticmuchh, go follow him!
