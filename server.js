@@ -252,7 +252,7 @@ client2.on('message', (channel, tags, message, self) => {
   if (message.includes('@chaoticmuchbot') && checkForVip() === true) {
     async function runCompletions(message) {
       const completions = await openai.createChatCompletion({
-        model: 'gpt-3.5-turbo',
+        model: 'gpt-4',
         messages: [
           {
             role: 'system',
@@ -322,7 +322,7 @@ client2.on('message', (channel, tags, message, self) => {
   if (message.includes('@chaoticmuchbot') && tags.mod) {
     async function runCompletion(message) {
       const completions = await openai.createChatCompletion({
-        model: 'gpt-3.5-turbo',
+        model: 'gpt-4',
         messages: [
           {
             role: 'system',
