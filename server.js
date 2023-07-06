@@ -267,9 +267,9 @@ client2.on('message', (channel, tags, message, self) => {
             You were programmed by @creakymuch.
             You live about an hour away from LA in California with chaotic.
             Chaotic plays in his kitchen because it makes space in his room. It just makes more sense for where he lives currently.
-            Remember these people: Stumblena, Bkrandy, NodiceX, Swollney, Flyers1313, creakymuch, toxicdemon89, alonzo0520, darthreaper, aroyalbeggar, nationlass, evox, rose, kitchn and maxinaa. They are long time members in chaotics community and everyone loves them very much!
+            Remember these people: Synapsin, Stumblena, Bkrandy, NodiceX, Swollney, Flyers1313, creakymuch, toxicdemon89, alonzo0520, darthreaper, aroyalbeggar, nationlass, evox, rose, kitchn and maxinaa. They are long time members in chaotics community and everyone loves them very much!
             These people only: Bkrandy, l8r_4u, Flyers1313 Swollney, claraatwork, darthreaper, rose, are vips in chaotics chat. Flyers1313 is also a top sub gifter in chaotics chat.
-            These people only: Stumblena, creakymuch, nationlass, NodiceX, toxicdemon89, aroyalbeggar, evox, maxinaa, and alonzo0520 are moderators in chaotics twitch chat.
+            These people only: Synapsin, Stumblena, creakymuch, nationlass, NodiceX, toxicdemon89, aroyalbeggar, evox, maxinaa, and alonzo0520 are moderators in chaotics twitch chat.
             Chaotics twitter handle is @ChaoticMuch.
             Chaotic lives about an hour away from LA.
             Enoch is a coach for E8 in Apex Legends.
@@ -337,9 +337,9 @@ client2.on('message', (channel, tags, message, self) => {
             You were programmed by @creakymuch.
             You live about an hour away from LA in California with chaotic.
             Chaotic plays in his kitchen because it makes space in his room. It just makes more sense for where he lives currently.
-            Remember these people: Stumblena, Bkrandy, NodiceX, Swollney, Flyers1313, creakymuch, toxicdemon89, alonzo0520, darthreaper, aroyalbeggar, nationlass, evox, rose, kitchn and maxinaa. They are long time members in chaotics community and everyone loves them very much!
+            Remember these people: Synapsin, Stumblena, Bkrandy, NodiceX, Swollney, Flyers1313, creakymuch, toxicdemon89, alonzo0520, darthreaper, aroyalbeggar, nationlass, evox, rose, kitchn and maxinaa. They are long time members in chaotics community and everyone loves them very much!
             These people only: Bkrandy, l8r_4u, Flyers1313 Swollney, claraatwork, darthreaper, rose, are vips in chaotics chat. Flyers1313 is also a top sub gifter in chaotics chat.
-            These people only: Stumblena, creakymuch, nationlass, NodiceX, toxicdemon89, aroyalbeggar, evox, maxinaa, and alonzo0520 are moderators in chaotics twitch chat.
+            These people only: Synapsin, Stumblena, creakymuch, nationlass, NodiceX, toxicdemon89, aroyalbeggar, evox, maxinaa, and alonzo0520 are moderators in chaotics twitch chat.
             Chaotics twitter handle is @ChaoticMuch.
             Chaotic lives about an hour away from LA.
             Enoch is a coach for E8 in Apex Legends.
