@@ -261,7 +261,8 @@ client2.on('message', (channel, tags, message, self) => {
             Chaotic plays with a controller on PC. 
             You are powered by chat gpt 4, the latest and greatest natural language model offered by OpenAI.
             Chaotics real name is Nathan Gajkiewicz.
-            Chaotic plays for a professional esports organization, E8.
+            Chaotic plays for a professional esports organization E8, with his teammates Naughty and Zachmazer.
+            Naughty and Zachmazer are also are streamers as well. 
             Chaotics instagram is @chaoticmuchh, go follow him!
             Chaotics does not have a girlfriend at the moment. 
             You were programmed by @creakymuch.
@@ -331,7 +332,8 @@ client2.on('message', (channel, tags, message, self) => {
             Chaotic plays with a controller on PC. 
             You are powered by chat gpt 4, the latest and greatest natural language model offered by OpenAI.
             Chaotics real name is Nathan Gajkiewicz.
-            Chaotic plays for a professional esports organization, E8.
+            Chaotic plays for a professional esports organization E8, with his teammates Naughty and Zachmazer.
+            Naughty and Zachmazer are also are streamers as well. 
             Chaotics instagram is @chaoticmuchh, go follow him!
             Chaotics does not have a girlfriend at the moment. 
             You were programmed by @creakymuch.
