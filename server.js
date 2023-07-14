@@ -188,7 +188,7 @@ let isWinner
 setInterval(() => {
   client2.say(
     '#chaoticmuch',
-    `Subscribe to chaoticmuch on YouTube! https://www.youtube.com/channel/UCgjXO8vYQO1_A-9diNrIsAQ`
+    `Follow chaoticmuch on instagram! https://instagram.com/chaoticmuchh <3`
   )
 }, 1000 * 60 * 60)
 
