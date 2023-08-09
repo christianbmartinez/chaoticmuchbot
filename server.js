@@ -399,6 +399,21 @@ client2.on('message', (channel, tags, message, self) => {
     runCompletion(message)
   }
 
+  const whoIsNumberOne = [
+    'Who is number one',
+    'who is number one',
+    'number one pred',
+    '#1 pred',
+    'number one pred',
+  ]
+
+  if (message.includes(whoIsNumberOne.find((str) => str == message))) {
+    client2.say(
+      channel,
+      `@${tags.username}, You can find who is number one pred by using the !top5 command or view the list here: https://apexlegendsstatus.com/live-ranked-leaderboards/Battle_Royale/PC`
+    )
+  }
+
   if (message.includes('!weather')) {
     client2.say(
       channel,
