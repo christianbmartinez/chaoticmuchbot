@@ -402,9 +402,13 @@ client2.on('message', (channel, tags, message, self) => {
   const whoIsNumberOne = [
     'Who is number one',
     'who is number one',
+    "who's number one",
+    "Who's number one",
+    "who's #1",
+    "Who's #1",
+    'Number one pred',
     'number one pred',
     '#1 pred',
-    'number one pred',
   ]
 
   if (message.includes(whoIsNumberOne.find((str) => str == message))) {
