@@ -411,7 +411,7 @@ client2.on('message', (channel, tags, message, self) => {
     '#1 pred',
   ]
 
-  if (message.includes(whoIsNumberOne.find((str) => str == message))) {
+  if (message.includes(whoIsNumberOne.find((str) => message == str))) {
     client2.say(
       channel,
       `@${tags.username}, You can find who is number one pred by using the !top5 command or view the list here: https://apexlegendsstatus.com/live-ranked-leaderboards/Battle_Royale/PC`
