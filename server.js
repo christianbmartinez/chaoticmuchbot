@@ -170,7 +170,7 @@ const client2 = new tmi.Client({
     username: process.env.TWITCH_BOT_USERNAME,
     password: process.env.TWITCH_ACCESS_TOKEN,
   },
-  channels: ['chaoticmuch'],
+  channels: ['creakymuch'],
 })
 
 client.connect()
@@ -186,6 +186,19 @@ client.on('message', (channel, tags, message, self) => {
     nowResponse = message
   }
 })
+
+const whoIsNumberOne = [
+  'Who is number one',
+  'who is number one',
+  "who's number one",
+  "Who's number one",
+  "who's #1",
+  "Who's #1",
+  "who's #1 pred",
+  "Who's #1 pred",
+  'Number one pred',
+  'number one pred',
+]
 
 let entries = {}
 let giveawayIsActive = false
@@ -398,18 +411,6 @@ client2.on('message', (channel, tags, message, self) => {
     }
     runCompletion(message)
   }
-
-  const whoIsNumberOne = [
-    'Who is number one',
-    'who is number one',
-    "who's number one",
-    "Who's number one",
-    "who's #1",
-    "Who's #1",
-    'Number one pred',
-    'number one pred',
-    '#1 pred',
-  ]
 
   if (message.includes(whoIsNumberOne.find((str) => str == message))) {
     client2.say(
