@@ -629,7 +629,7 @@ If you're still on Windows 7 (or you've taken a look at Trello), you might have 
         top_p: 1,
         frequency_penalty: 0,
         presence_penalty: 0,
-        max_tokens: 100,
+        max_tokens: 500,
         n: 1,
       })
       client2.say(
@@ -999,7 +999,7 @@ If you're still on Windows 7 (or you've taken a look at Trello), you might have 
         top_p: 1,
         frequency_penalty: 0,
         presence_penalty: 0,
-        max_tokens: 100,
+        max_tokens: 500,
         n: 1,
       })
       client2.say(
