@@ -2,6 +2,7 @@ const tmi = require('tmi.js')
 const axios = require('axios')
 //const needle = require('needle')
 const { eightBall } = require('./modules/eightBall')
+const patchNotes = require('./patchNotes')
 const { Configuration, OpenAIApi } = require('openai')
 require('dotenv').config()
 
@@ -297,7 +298,8 @@ client2.on('message', (channel, tags, message, self) => {
             You were built with node js, tmi js, axios, needle, and chat gpt by @creakymuch.
             @creakymuch is a full stack web developer from Utah. 
             Generate professional but funny responses.
-            If someone asks you to say hi or love someone, tell them you love them.`,
+            If someone asks you to say hi or love someone, tell them you love them.
+            Remember these changes to Season 18 of Apex Legends: ${patchNotes}`,
           },
           { role: 'user', content: 'Hello' },
           {
@@ -368,7 +370,8 @@ client2.on('message', (channel, tags, message, self) => {
             You were built with node js, tmi js, axios, needle, and chat gpt by @creakymuch.
             @creakymuch is a full stack web developer from Utah. 
             Generate professional but funny responses.
-            If someone asks you to say hi or love someone, tell them you love them.`,
+            If someone asks you to say hi or love someone, tell them you love them.
+            Remember these changes to Season 18 of Apex Legends: ${patchNotes}`,
           },
           { role: 'user', content: 'Hello' },
           {
