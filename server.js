@@ -187,19 +187,6 @@ client.on('message', (channel, tags, message, self) => {
   }
 })
 
-const whoIsNumberOne = [
-  'Who is number one',
-  'who is number one',
-  "who's number one",
-  "Who's number one",
-  "who's #1",
-  "Who's #1",
-  "who's #1 pred",
-  "Who's #1 pred",
-  'Number one pred',
-  'number one pred',
-]
-
 let entries = {}
 let giveawayIsActive = false
 let tourneyIsActive = false
@@ -410,13 +397,6 @@ client2.on('message', (channel, tags, message, self) => {
       )
     }
     runCompletion(message)
-  }
-
-  if (message.includes(whoIsNumberOne.find((str) => str == message))) {
-    client2.say(
-      channel,
-      `@${tags.username}, You can find who is number one pred by using the !top5 command or view the list here: https://apexlegendsstatus.com/live-ranked-leaderboards/Battle_Royale/PC`
-    )
   }
 
   if (message.includes('!weather')) {
